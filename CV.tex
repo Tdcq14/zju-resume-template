@@ -73,11 +73,12 @@
 \begin{itemize}
   \item 设计文档解析、依赖检索、命令执行与构建验证协同的 Agent 架构；解析 README/Wiki/Cargo 配置，生成可执行构建计划，并在 Docker 中完成工具链安装、编译与测试。
   \item 设计分层 Context/Memory：工作记忆维护当前阶段、关键命令与最新错误，长期记忆沉淀已验证依赖、环境配置和修复经验；通过摘要压缩、检索回填与去重控制上下文长度，减少重复试错与历史噪声。
-  \item 基于 compiler/test feedback 构建 plan--execute--observe--reflect 自愈闭环，按错误类型更新计划、回滚失败操作并迭代生成修复动作。\textbf{技术栈：}Docker、vLLM、Web Crawler、Context/Memory Management、Error Recovery。
+  \item 基于 compiler/test feedback 构建 plan--execute--observe--reflect 自愈闭环，按错误类型更新计划、回滚失败操作并迭代生成修复动作。\newline
+  \textbf{技术栈：}Docker、vLLM、Web Crawler、Context/Memory Management、Error Recovery。
 \end{itemize}
 \projectsep
 
-\textbf{面向长时程 SWE Agent 的 Agentic RL 与 Harness 研究} \hfill 2026 -- 至今 \titlebreak
+\textbf{面向长时程 SWE Agent 的 Agentic RL 研究} \hfill 2026 -- 至今 \titlebreak
 \textit{SWE Agent / RL Post-training}
 \begin{itemize}
   \item 面向长上下文交互研究子任务拆分与 trajectory compression：基于 SAT 识别关键状态及任务依赖，结合 OPSD re-decision 对失败分支进行重规划、压缩冗余历史，并构造优质/劣质轨迹对进行 DPO 优化。
@@ -89,7 +90,7 @@
 \textbf{华为 2012 实验室} \hfill 2025.12 -- 2026.04 \titlebreak
 \textit{软件安全算法实习生}
 \begin{itemize}
-  \item 构建面向 C/C++ 与 Java 的 LLM 辅助 CWE 分类与安全代码审查流水线，完成 CWD--CWE 标签映射、样本清洗、结构化输入输出、批量推理及分语言 Precision/Recall/F1 评估。
+  \item 构建面向 C/C++ 与 Java 的 LLM 辅助 CWE 分类与安全代码审查流水线，完成样本清洗、结构化输入输出、批量推理及分语言 Precision/Recall/F1 评估。
   \item 设计异构多模型级联：以 DeepSeek-V3 为主模型、Qwen 为 fallback，对 API 失败、非法标签与规则冲突样本自动切换和复判；结合严格 JSON 约束、自动重试与结果追踪，提高大规模评估稳定性。
   \item 针对 CWE-754/755/190 等近邻类别构建消歧规则与错误样例库，将模型预测与轻量代码特征结合，对异常处理、缺失检查和整数溢出冲突样本触发二次 re-decision，降低类别混淆。
 \end{itemize}
