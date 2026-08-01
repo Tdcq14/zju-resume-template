@@ -1,31 +1,133 @@
-\documentclass[11pt]{article}
-\usepackage{xltxtra,hyperref,xcolor,graphicx,tikz,fontspec,xeCJK,enumitem,fontawesome}
-\usepackage[a4paper,left=1.2cm,right=1.2cm,top=1.2cm,bottom=1cm]{geometry}
-\definecolor{CVBlue}{RGB}{23,110,191}
-\setmainfont{TeX Gyre Termes}
-\setCJKmainfont{Noto Sans CJK SC}
-\setlist[itemize]{noitemsep,topsep=0.15em}
-\begin{document}\pagenumbering{gobble}
-\begin{tikzpicture}[remember picture,overlay]\node[anchor=north east] at ($(current page.north east)+(-1.5cm,-1cm)$){\includegraphics[height=3cm]{avatar.jpg}};\end{tikzpicture}
-\begin{center}{\LARGE\bfseries 张钰杰}\\浙江大学 软件工程硕士（LLM4SE）\\\faPhone\ 18035648428\quad \faEnvelopeO\ zhang.yujie@zju.edu.cn\end{center}
-\section*{教育背景}
-\textbf{北京交通大学 软件工程 本科}\hfill 2020.09--2024.06\\学院公示排名：课程成绩52/183（前30\%），数学与专业能力37/183（前20\%）
+\documentclass[10pt]{article}
 
-\textbf{浙江大学 软件工程 研究生}\hfill 2025.09--至今\\区块链与数据安全全国重点实验室；研究方向：智能化软件工程（LLM4SE）
-\section*{项目经历}
-\textbf{基于 LLM Agent 的 Rust 项目自动化构建与修复系统}\hfill 2025.06--2025.12
-\begin{itemize}\item 设计文档解析、网络检索、指令执行协同的多智能体架构，利用 LLM 自动抽取依赖和构建流程。\item 构建基于编译日志与测试反馈的错误自愈闭环。\end{itemize}
-\textbf{面向 SWE Agent 的 Outcome-only Agentic RL 训练系统}\hfill 2026--至今
-\begin{itemize}\item 基于 SkyRL 与 Mini-SWE-Agent 搭建 SWE Agent 强化学习训练链路，采用 Mixed408、K=8 rollout、Docker sandbox 和 harness 验证。\item 实现 outcome-only GRPO 训练、轨迹优势计算、FSDP 更新和 vLLM 同步，使用4×A800完成训练实验。\end{itemize}
-\section*{实习经历}
-\textbf{华为2012实验室 软件安全算法实习生}\hfill 2025.12--2026.04
-\begin{itemize}\item 构建 LLM 辅助漏洞检测与 CWE 分类流水线，完成数据清洗、标签映射和评估。\item 设计 CoT/Few-shot Prompt 与规则校验机制优化易混淆漏洞类别识别。\end{itemize}
-\textbf{中建材信云智联 大模型部/数据中台部 实习生}\hfill 2024.03--2024.06
-\begin{itemize}\item 参与数据治理、ETL 开发及 Text-to-SQL（DB-GPT）评估，构建300+复杂查询测试集。\end{itemize}
-\section*{技术能力}
-Python、C/C++、Java、SQL、PyTorch、Transformers、vLLM、Agentic RL、GRPO/PPO、Docker、Ray、FSDP、RAG、Prompt Engineering
-\section*{论文与工具}
-ASE 2026 Tool Demonstration：VS Code SmellCC，基于 LLM 的代码异味检测与自动重构插件，结合 SonarLint、CoT Prompt 和 Quick Fix 完成函数级重构。
-\section*{获奖情况}
-三等学习优秀奖学金（2020--2021）；校级创新训练项目（2022--2023）
+\setlength{\parindent}{0pt}
+\usepackage{xltxtra}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\usepackage{xcolor}
+\definecolor{CVBlue}{RGB}{23,110,191}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{enumitem}
+\CJKsetecglue{}
+
+% 使用仓库内置字体，避免 CI 容器缺少系统字体。
+\setmainfont[
+    Path = fonts/Main/,
+    UprightFont = texgyretermes-regular.otf,
+    BoldFont = texgyretermes-bold.otf
+]{texgyretermes-regular.otf}
+\setCJKmainfont[
+    Path = fonts/hansans/,
+    UprightFont = NotoSansSC-Regular.ttf,
+    BoldFont = NotoSansSC-Bold.ttf
+]{NotoSansSC-Regular.ttf}
+
+\usepackage{fontawesome}
+\usepackage[
+    a4paper,
+    left=1.15cm,
+    right=1.15cm,
+    top=0.95cm,
+    bottom=0.70cm,
+    nohead
+]{geometry}
+\renewcommand{\baselinestretch}{1.10}
+
+\usepackage{titlesec}
+\setlist[itemize]{nosep,topsep=0.10em,leftmargin=1.45em,labelsep=0.45em}
+\newlength{\interProjectSpacing}
+\setlength{\interProjectSpacing}{0.28em}
+\newcommand{\projectsep}{\vspace{\interProjectSpacing}}
+\newlength{\intraProjectTitleSep}
+\setlength{\intraProjectTitleSep}{0.08em}
+\newcommand{\titlebreak}{\\[\intraProjectTitleSep]}
+
+\titleformat{\section}{\large\bfseries\raggedright}{}{0em}{}[{\color{CVBlue}\titlerule}]
+\titlespacing*{\section}{0cm}{0.55em}{0.28em}
+\newcommand{\entry}[4]{\textbf{#2}\hfill #1\\[-0.08em]#3\hfill #4}
+\newcommand{\skillitem}[2]{\textbf{#1：}#2}
+
+\begin{document}
+\pagenumbering{gobble}
+\small
+
+\begin{tikzpicture}[remember picture,overlay]
+  \node[anchor=north east] at ($(current page.north east)+(-1.25cm,-0.72cm)$)
+  {\includegraphics[width=2.25cm,height=2.95cm,keepaspectratio]{avatar.jpg}};
+\end{tikzpicture}
+
+{\LARGE\bfseries 张钰杰}\\[0.20em]
+{\normalsize 浙江大学软件学院 · 软件工程硕士 · 智能化软件工程（LLM4SE）}\\[0.25em]
+{\faPhone\ 18035648428 \quad
+ \faEnvelopeO\ \href{mailto:zhang.yujie@zju.edu.cn}{zhang.yujie@zju.edu.cn} \quad
+ \faGithubSquare\ \href{https://github.com/Tdcq14}{github.com/Tdcq14}}\\[-0.10em]
+{\color{CVBlue}\rule{0.82\textwidth}{0.55pt}}
+
+\section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faGraduationCap}\ 教育背景}
+\entry{2020.09 -- 2024.06}{北京交通大学}{软件工程}{本科}
+\begin{itemize}
+  \item 学院公示排名：课程成绩 52/183（前30\%）；数学与专业能力 37/183（前20\%）。
+\end{itemize}
+\entry{2025.09 -- 至今}{浙江大学}{软件工程}{研究生}
+\begin{itemize}
+  \item 实验室：区块链与数据安全全国重点实验室；研究方向：智能化软件工程（LLM4SE）。
+\end{itemize}
+
+\section{\makebox[\widthof{\faCode}][c]{\color{CVBlue}\faCode}\ 项目经历}
+\textbf{基于 LLM Agent 的 Rust 项目自动化构建与修复系统} \hfill 2025.06 -- 2025.12 \titlebreak
+\textit{Agent / 系统研发}
+\begin{itemize}
+  \item 设计文档解析、网络检索与指令执行协同的多智能体架构，利用 LLM 解析 README/Wiki，自动抽取依赖、工具链和构建流程，并在隔离环境中完成项目构建。
+  \item 构建基于编译日志与测试反馈的错误自愈闭环，结合上下文管理、CoT 与失败恢复策略迭代生成修复动作，提升复杂 Rust 项目的自动化构建与故障定位能力。
+  \item \textbf{技术栈：}Docker、vLLM、Web Crawler、Prompt Engineering、CoT、Context Management、Error Handling Loop。
+\end{itemize}
+\projectsep
+
+\textbf{面向 SWE Agent 的 Outcome-only Agentic RL 训练系统} \hfill 2026 -- 至今 \titlebreak
+\textit{SWE Agent / Agentic RL}
+\begin{itemize}
+  \item 基于 SkyRL 与 Mini-SWE-Agent 搭建长时程软件修复训练链路：对同一 issue 并行采样 $K=8$ 条 Search/Read/Edit/Test/Submit 轨迹，并在独立 Docker sandbox 与官方 harness 中执行补丁验证。
+  \item 在 Mixed408 上实现终局二值奖励的 GRPO 训练，完成轨迹过滤与补采样、组内相对优势计算、FSDP 策略更新及 vLLM 权重同步；使用 4$\times$A800 完成 3,264 条 rollout / 51 个优化步。
+  \item 建立可复现实验与评测合同，结构化区分 model/infra/data failure，并对 global\_step\_25、global\_step\_51 在 held-out SWE-bench Verified500 上进行同配置对比，分析训练前后的修复行为与模型能力变化。
+\end{itemize}
+
+\section{\makebox[\widthof{\faBriefcase}][c]{\color{CVBlue}\faBriefcase}\ 实习经历}
+\textbf{华为 2012 实验室} \hfill 2025.12 -- 2026.04 \titlebreak
+\textit{软件安全算法实习生}
+\begin{itemize}
+  \item 面向 C/C++ 与 Java 代码构建 LLM 辅助漏洞检测与 CWE 多分类流水线，完成 CWD--CWE 标签映射、样本清洗、结构化 JSONL 数据生成及分语言 Precision/Recall/F1 评估。
+  \item 针对 CWE-754/755、CWE-190 等易混淆类别设计规则知识库、CoT/Few-shot Prompt 与启发式二次校验，结合错误样例反向分析定位检测缺失、异常处理与整数溢出等根因，降低类别混淆。
+  \item 完善 API 重试、主备模型兜底、JSON 输出约束与错误报告机制，支持批量推理、结果追踪和可复现实验，提高大规模漏洞样本评估的稳定性。
+\end{itemize}
+\projectsep
+
+\textbf{中建材信云智联公司 · 数据中台部 / 大模型部} \hfill 2024.03 -- 2024.06 \titlebreak
+\textit{实习生}
+\begin{itemize}
+  \item 参与数据分层治理与 ETL 开发，编写 SQL 脚本，并通过数据原生引擎及 Kettle 完成数据抽取、转换与入库任务。
+  \item 负责 Text-to-SQL 系统 DB-GPT 的落地评估，构建 300+ 条复杂查询测试集，分析多表关联场景中的幻觉与模式理解问题，并迭代 Prompt 模板与评测流程。
+\end{itemize}
+
+\section{\makebox[\widthof{\faWrench}][c]{\color{CVBlue}\faWrench}\ 技术能力}
+\begin{itemize}
+  \item \skillitem{编程与数据}{Python、C/C++、Java、SQL、TypeScript；PyTorch、Transformers、Pandas、scikit-learn。}
+  \item \skillitem{LLM / Agent}{vLLM、Prompt Engineering、CoT / Few-shot、Agentic RL（GRPO/PPO）、SWE Agent、RAG。}
+  \item \skillitem{系统与工程}{Linux、Docker、Ray、FSDP、Git、MySQL、Kettle、pytest；SonarQube / SonarLint、CWE。}
+\end{itemize}
+
+\section{\makebox[\widthof{\faFlask}][c]{\color{CVBlue}\faFlask}\ 论文与工具}
+\begin{itemize}
+  \item \textbf{ASE 2026 Tool Demonstration（录用）—— VS Code SmellCC：}参与实现基于课题组 TOSEM 研究原型的 LLM 代码异味重构插件；镜像 SonarLint 诊断，支持 Top-10 Python code smells，通过 VS Code Quick Fix 调用 CoT Prompt 完成函数级重构与自动回写，并完成工具演示视频。
+\end{itemize}
+
+\section{\makebox[\widthof{\faTrophy}][c]{\color{CVBlue}\faTrophy}\ 获奖情况}
+\begin{itemize}
+  \item 三等学习优秀奖学金（2020--2021）\hfill 校级创新训练项目（2022--2023）
+\end{itemize}
+
 \end{document}
