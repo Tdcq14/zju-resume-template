@@ -24,32 +24,37 @@
     BoldFont = NotoSansSC-Bold.ttf
 ]{NotoSansSC-Regular.ttf}
 \usepackage{fontawesome}
-\usepackage[a4paper,left=1.15cm,right=1.15cm,top=0.88cm,bottom=0.62cm,nohead]{geometry}
-\renewcommand{\baselinestretch}{1.07}
+\usepackage[a4paper,left=1.15cm,right=1.15cm,top=0.82cm,bottom=0.58cm,nohead]{geometry}
+\renewcommand{\baselinestretch}{1.06}
 \usepackage{titlesec}
-\setlist[itemize]{nosep,topsep=0.08em,leftmargin=1.42em,labelsep=0.42em}
+\setlist[itemize]{nosep,topsep=0.06em,leftmargin=1.42em,labelsep=0.42em}
 \newlength{\interProjectSpacing}
-\setlength{\interProjectSpacing}{0.22em}
+\setlength{\interProjectSpacing}{0.20em}
 \newcommand{\projectsep}{\vspace{\interProjectSpacing}}
 \newlength{\intraProjectTitleSep}
-\setlength{\intraProjectTitleSep}{0.05em}
+\setlength{\intraProjectTitleSep}{0.04em}
 \newcommand{\titlebreak}{\\[\intraProjectTitleSep]}
 \titleformat{\section}{\large\bfseries\raggedright}{}{0em}{}[{\color{CVBlue}\titlerule}]
-\titlespacing*{\section}{0cm}{0.46em}{0.22em}
+\titlespacing*{\section}{0cm}{0.42em}{0.20em}
 \newcommand{\entry}[4]{\textbf{#2}\hfill #1\\[-0.10em]#3\hfill #4}
 \newcommand{\skillitem}[2]{\textbf{#1：}#2}
+
 \begin{document}
 \pagenumbering{gobble}
 \small
+
 \begin{tikzpicture}[remember picture,overlay]
-  \node[anchor=north east,inner sep=0pt,draw=CVBlue,line width=0.45pt] at ($(current page.north east)+(-1.20cm,-0.68cm)$)
+  \node[anchor=north east,inner sep=0pt,draw=CVBlue,line width=0.45pt]
+  at ($(current page.north east)+(-1.20cm,-0.62cm)$)
   {\includegraphics[width=2.05cm,height=2.80cm,keepaspectratio]{avatar.jpg}};
 \end{tikzpicture}
-{\LARGE\bfseries 张钰杰}\\[0.16em]
-{\normalsize 浙江大学软件学院 · 软件工程硕士 \quad | \quad LLM4SE / SWE Agent / Agentic RL}\\[0.22em]
+
+{\LARGE\bfseries 张钰杰}\\[0.13em]
+{\normalsize 浙江大学软件学院 · 软件工程硕士}\\[0.16em]
 {\faPhone\ 19730058324 \quad
  \faEnvelopeO\ \href{mailto:zhang.yujie@zju.edu.cn}{zhang.yujie@zju.edu.cn} \quad
- \faGithubSquare\ \href{https://github.com/Tdcq14}{github.com/Tdcq14}}\\[-0.10em]
+ \faGithubSquare\ \href{https://github.com/Tdcq14}{github.com/Tdcq14}}\\[0.10em]
+{\textbf{Research Interest：}Agentic RL · LLM Post-training · Long-horizon Agent · SWE Harness / Evaluation}\\[-0.10em]
 {\color{CVBlue}\rule{0.82\textwidth}{0.55pt}}
 
 \section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faGraduationCap}\ 教育背景}
@@ -72,12 +77,12 @@
 \end{itemize}
 \projectsep
 
-\textbf{面向长时程 SWE Agent 的 Agentic RL 与信用分配研究} \hfill 2026 -- 至今 \titlebreak
-\textit{SWE Agent / Agentic RL}
+\textbf{面向长时程 SWE Agent 的 Agentic RL 与 Harness 研究} \hfill 2026 -- 至今 \titlebreak
+\textit{SWE Agent / RL Post-training}
 \begin{itemize}
-  \item 探索 \textbf{SAT 定位 + OPSD re-decision + DPO}：基于形式约束定位长轨迹中的关键错误决策，局部重生成决策并构造 preference pair，通过 DPO 定向修正高影响行为。
-  \item 实现并对比 \textbf{outcome-only GRPO 与 verifier-GRPO}：基于 SkyRL + Mini-SWE-Agent 进行 $K=8$ on-policy rollout，以 Docker/SWE harness 产生终局信号，并研究 verifier 对补丁质量、测试行为与可执行性的增量监督；在 Mixed408 上使用 4$\times$A800 完成 3,264 条 rollout / 51 个优化步，并在 held-out SWE-bench Verified500 上评测。
-  \item 围绕 long-horizon \textbf{credit assignment}，研究将 trajectory-level GRPO signal 与 step critic、TD(0)/short-horizon GAE 结合，通过 bounded mass-conserving routing 将更新强度分配到不同 turn/token，同时保持轨迹级方向与总 loss mass。
+  \item 面向长上下文交互研究子任务拆分与 trajectory compression：基于 SAT 识别关键状态及任务依赖，结合 OPSD re-decision 对失败分支进行重规划、压缩冗余历史，并构造优质/劣质轨迹对进行 DPO 优化。
+  \item 基于 SkyRL + Mini-SWE-Agent 搭建 $K=8$ on-policy rollout、Docker sandbox 与 SWE harness 评测链路；在 Mixed408 上使用 4$\times$A800 完成 3,264 条 rollout / 51 个优化步，并在 held-out SWE-bench Verified500 上进行统一合同评测。
+  \item 研究 GRPO 在稀疏终局奖励下的 credit assignment 问题，尝试引入 verifier 辅助反馈与时序信用分配，将轨迹级训练信号更合理地路由至关键 turn/token。
 \end{itemize}
 
 \section{\makebox[\widthof{\faBriefcase}][c]{\color{CVBlue}\faBriefcase}\ 实习经历}
@@ -85,8 +90,8 @@
 \textit{软件安全算法实习生}
 \begin{itemize}
   \item 构建面向 C/C++ 与 Java 的 LLM 辅助 CWE 分类与安全代码审查流水线，完成 CWD--CWE 标签映射、样本清洗、结构化输入输出、批量推理及分语言 Precision/Recall/F1 评估。
-  \item 设计\textbf{异构多模型级联}：以 DeepSeek-V3 为主模型、Qwen 为 fallback，对 API 失败、非法标签和规则冲突样本自动切换与复判；结合严格 JSON 约束、重试和结果追踪，提升大规模评估稳定性。
-  \item 围绕定位、上下文与推理幻觉建立 error taxonomy，将模型判断与可执行规则/轻量静态分析结合，针对 detection vs. handling、整数溢出与异常处理等冲突触发二次 re-decision，降低 CWE-754/755/190 等近邻类别混淆。
+  \item 设计异构多模型级联：以 DeepSeek-V3 为主模型、Qwen 为 fallback，对 API 失败、非法标签与规则冲突样本自动切换和复判；结合严格 JSON 约束、自动重试与结果追踪，提高大规模评估稳定性。
+  \item 针对 CWE-754/755/190 等近邻类别构建消歧规则与错误样例库，将模型预测与轻量代码特征结合，对异常处理、缺失检查和整数溢出冲突样本触发二次 re-decision，降低类别混淆。
 \end{itemize}
 \projectsep
 
@@ -104,8 +109,8 @@
 
 \section{\makebox[\widthof{\faWrench}][c]{\color{CVBlue}\faWrench}\ 技术能力}
 \begin{itemize}
-  \item \skillitem{编程与训练}{Python、C/C++、Java；PyTorch、vLLM、SkyRL；熟悉 GRPO、DPO、PPO、SWE-bench。}
-  \item \skillitem{系统与工程}{Linux、Docker、Ray、FSDP、Git；具备多 GPU 训练、跨节点 rollout、实验恢复与可复现评测经验。}
+  \item \skillitem{后训练与 Agent}{PyTorch、vLLM、SkyRL；熟悉 GRPO、DPO、PPO、reward design、credit assignment 与 SWE-bench。}
+  \item \skillitem{系统与 Harness}{Linux、Docker、Ray、FSDP、Git；具备多 GPU 训练、跨节点 rollout、实验恢复与可复现评测经验。}
   \item \skillitem{AI 编程工具}{熟练使用 Claude Code、OpenAI Codex 进行仓库级代码阅读、重构、调试、测试与自动化任务执行。}
 \end{itemize}
 
