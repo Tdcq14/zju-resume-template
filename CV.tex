@@ -1,5 +1,4 @@
 \documentclass[10pt]{article}
-
 \setlength{\parindent}{0pt}
 \usepackage{xltxtra}
 \usepackage{hyperref}
@@ -14,8 +13,6 @@
 \usepackage{xeCJK}
 \usepackage{enumitem}
 \CJKsetecglue{}
-
-% 使用仓库内置字体，避免 CI 容器缺少系统字体。
 \setmainfont[
     Path = fonts/Main/,
     UprightFont = texgyretermes-regular.otf,
@@ -26,43 +23,30 @@
     UprightFont = NotoSansSC-Regular.ttf,
     BoldFont = NotoSansSC-Bold.ttf
 ]{NotoSansSC-Regular.ttf}
-
 \usepackage{fontawesome}
-\usepackage[
-    a4paper,
-    left=1.15cm,
-    right=1.15cm,
-    top=0.95cm,
-    bottom=0.70cm,
-    nohead
-]{geometry}
-\renewcommand{\baselinestretch}{1.10}
-
+\usepackage[a4paper,left=1.15cm,right=1.15cm,top=0.88cm,bottom=0.62cm,nohead]{geometry}
+\renewcommand{\baselinestretch}{1.07}
 \usepackage{titlesec}
-\setlist[itemize]{nosep,topsep=0.10em,leftmargin=1.45em,labelsep=0.45em}
+\setlist[itemize]{nosep,topsep=0.08em,leftmargin=1.42em,labelsep=0.42em}
 \newlength{\interProjectSpacing}
-\setlength{\interProjectSpacing}{0.28em}
+\setlength{\interProjectSpacing}{0.22em}
 \newcommand{\projectsep}{\vspace{\interProjectSpacing}}
 \newlength{\intraProjectTitleSep}
-\setlength{\intraProjectTitleSep}{0.08em}
+\setlength{\intraProjectTitleSep}{0.05em}
 \newcommand{\titlebreak}{\\[\intraProjectTitleSep]}
-
 \titleformat{\section}{\large\bfseries\raggedright}{}{0em}{}[{\color{CVBlue}\titlerule}]
-\titlespacing*{\section}{0cm}{0.55em}{0.28em}
-\newcommand{\entry}[4]{\textbf{#2}\hfill #1\\[-0.08em]#3\hfill #4}
+\titlespacing*{\section}{0cm}{0.46em}{0.22em}
+\newcommand{\entry}[4]{\textbf{#2}\hfill #1\\[-0.10em]#3\hfill #4}
 \newcommand{\skillitem}[2]{\textbf{#1：}#2}
-
 \begin{document}
 \pagenumbering{gobble}
 \small
-
 \begin{tikzpicture}[remember picture,overlay]
-  \node[anchor=north east] at ($(current page.north east)+(-1.25cm,-0.72cm)$)
-  {\includegraphics[width=2.25cm,height=2.95cm,keepaspectratio]{avatar.jpg}};
+  \node[anchor=north east,inner sep=0pt,draw=CVBlue,line width=0.45pt] at ($(current page.north east)+(-1.20cm,-0.68cm)$)
+  {\includegraphics[width=2.05cm,height=2.80cm,keepaspectratio]{avatar.jpg}};
 \end{tikzpicture}
-
-{\LARGE\bfseries 张钰杰}\\[0.20em]
-{\normalsize 浙江大学软件学院 · 软件工程硕士 · 智能化软件工程（LLM4SE）}\\[0.25em]
+{\LARGE\bfseries 张钰杰}\\[0.16em]
+{\normalsize 浙江大学软件学院 · 软件工程硕士 \quad | \quad LLM4SE / SWE Agent / Agentic RL}\\[0.22em]
 {\faPhone\ 18035648428 \quad
  \faEnvelopeO\ \href{mailto:zhang.yujie@zju.edu.cn}{zhang.yujie@zju.edu.cn} \quad
  \faGithubSquare\ \href{https://github.com/Tdcq14}{github.com/Tdcq14}}\\[-0.10em]
@@ -75,59 +59,58 @@
 \end{itemize}
 \entry{2025.09 -- 至今}{浙江大学}{软件工程}{研究生}
 \begin{itemize}
-  \item 实验室：区块链与数据安全全国重点实验室；研究方向：智能化软件工程（LLM4SE）。
+  \item 区块链与数据安全全国重点实验室；研究方向：智能化软件工程（LLM4SE）。
 \end{itemize}
 
 \section{\makebox[\widthof{\faCode}][c]{\color{CVBlue}\faCode}\ 项目经历}
 \textbf{基于 LLM Agent 的 Rust 项目自动化构建与修复系统} \hfill 2025.06 -- 2025.12 \titlebreak
 \textit{Agent / 系统研发}
 \begin{itemize}
-  \item 设计文档解析、网络检索与指令执行协同的多智能体架构，利用 LLM 解析 README/Wiki，自动抽取依赖、工具链和构建流程，并在隔离环境中完成项目构建。
-  \item 构建基于编译日志与测试反馈的错误自愈闭环，结合上下文管理、CoT 与失败恢复策略迭代生成修复动作，提升复杂 Rust 项目的自动化构建与故障定位能力。
-  \item \textbf{技术栈：}Docker、vLLM、Web Crawler、Prompt Engineering、CoT、Context Management、Error Handling Loop。
+  \item 设计文档解析、依赖检索、命令执行与构建验证协同的 Agent 架构；解析 README/Wiki/Cargo 配置，生成可执行构建计划，并在 Docker 中完成工具链安装、编译与测试。
+  \item 设计分层 Context/Memory：工作记忆维护当前阶段、关键命令与最新错误，长期记忆沉淀已验证依赖、环境配置和修复经验；通过摘要压缩、检索回填与去重控制上下文长度，减少重复试错与历史噪声。
+  \item 基于 compiler/test feedback 构建 plan--execute--observe--reflect 自愈闭环，按错误类型更新计划、回滚失败操作并迭代生成修复动作。\textbf{技术栈：}Docker、vLLM、Web Crawler、Context/Memory Management、Error Recovery。
 \end{itemize}
 \projectsep
 
-\textbf{面向 SWE Agent 的 Outcome-only Agentic RL 训练系统} \hfill 2026 -- 至今 \titlebreak
+\textbf{面向长时程 SWE Agent 的 Agentic RL 与信用分配研究} \hfill 2026 -- 至今 \titlebreak
 \textit{SWE Agent / Agentic RL}
 \begin{itemize}
-  \item 基于 SkyRL 与 Mini-SWE-Agent 搭建长时程软件修复训练链路：对同一 issue 并行采样 $K=8$ 条 Search/Read/Edit/Test/Submit 轨迹，并在独立 Docker sandbox 与官方 harness 中执行补丁验证。
-  \item 在 Mixed408 上实现终局二值奖励的 GRPO 训练，完成轨迹过滤与补采样、组内相对优势计算、FSDP 策略更新及 vLLM 权重同步；使用 4$\times$A800 完成 3,264 条 rollout / 51 个优化步。
-  \item 建立可复现实验与评测合同，结构化区分 model/infra/data failure，并对 global\_step\_25、global\_step\_51 在 held-out SWE-bench Verified500 上进行同配置对比，分析训练前后的修复行为与模型能力变化。
+  \item 探索 \textbf{SAT 定位 + OPSD re-decision + DPO}：基于形式约束定位长轨迹中的关键错误决策，局部重生成决策并构造 preference pair，通过 DPO 定向修正高影响行为。
+  \item 实现并对比 \textbf{outcome-only GRPO 与 verifier-GRPO}：基于 SkyRL + Mini-SWE-Agent 进行 $K=8$ on-policy rollout，以 Docker/SWE harness 产生终局信号，并研究 verifier 对补丁质量、测试行为与可执行性的增量监督；在 Mixed408 上使用 4$\times$A800 完成 3,264 条 rollout / 51 个优化步，并在 held-out SWE-bench Verified500 上评测。
+  \item 围绕 long-horizon \textbf{credit assignment}，研究将 trajectory-level GRPO signal 与 step critic、TD(0)/short-horizon GAE 结合，通过 bounded mass-conserving routing 将更新强度分配到不同 turn/token，同时保持轨迹级方向与总 loss mass。
 \end{itemize}
 
 \section{\makebox[\widthof{\faBriefcase}][c]{\color{CVBlue}\faBriefcase}\ 实习经历}
 \textbf{华为 2012 实验室} \hfill 2025.12 -- 2026.04 \titlebreak
 \textit{软件安全算法实习生}
 \begin{itemize}
-  \item 面向 C/C++ 与 Java 代码构建 LLM 辅助漏洞检测与 CWE 多分类流水线，完成 CWD--CWE 标签映射、样本清洗、结构化 JSONL 数据生成及分语言 Precision/Recall/F1 评估。
-  \item 针对 CWE-754/755、CWE-190 等易混淆类别设计规则知识库、CoT/Few-shot Prompt 与启发式二次校验，结合错误样例反向分析定位检测缺失、异常处理与整数溢出等根因，降低类别混淆。
-  \item 完善 API 重试、主备模型兜底、JSON 输出约束与错误报告机制，支持批量推理、结果追踪和可复现实验，提高大规模漏洞样本评估的稳定性。
+  \item 构建面向 C/C++ 与 Java 的 LLM 辅助 CWE 分类与安全代码审查流水线，完成 CWD--CWE 标签映射、样本清洗、结构化输入输出、批量推理及分语言 Precision/Recall/F1 评估。
+  \item 设计\textbf{异构多模型级联}：以 DeepSeek-V3 为主模型、Qwen 为 fallback，对 API 失败、非法标签和规则冲突样本自动切换与复判；结合严格 JSON 约束、重试和结果追踪，提升大规模评估稳定性。
+  \item 围绕定位、上下文与推理幻觉建立 error taxonomy，将模型判断与可执行规则/轻量静态分析结合，针对 detection vs. handling、整数溢出与异常处理等冲突触发二次 re-decision，降低 CWE-754/755/190 等近邻类别混淆。
 \end{itemize}
 \projectsep
 
 \textbf{中建材信云智联公司 · 数据中台部 / 大模型部} \hfill 2024.03 -- 2024.06 \titlebreak
 \textit{实习生}
 \begin{itemize}
-  \item 参与数据分层治理与 ETL 开发，编写 SQL 脚本，并通过数据原生引擎及 Kettle 完成数据抽取、转换与入库任务。
-  \item 负责 Text-to-SQL 系统 DB-GPT 的落地评估，构建 300+ 条复杂查询测试集，分析多表关联场景中的幻觉与模式理解问题，并迭代 Prompt 模板与评测流程。
+  \item 参与数仓分层治理与 ETL 任务开发，基于 SQL/Kettle 完成数据抽取、清洗、转换、入仓及任务校验。
+  \item 负责 DB-GPT Text-to-SQL 落地评估，构建 300+ 条复杂查询 benchmark，覆盖多表关联、聚合与嵌套查询；分析 schema linking、join path 与 hallucination 错误，并通过数据库元数据注入、表关系约束和 SQL 输出校验优化生成质量。
+\end{itemize}
+
+\section{\makebox[\widthof{\faFlask}][c]{\color{CVBlue}\faFlask}\ 科研与工具}
+\begin{itemize}
+  \item \textbf{ASE 2026 Tool Demonstration（录用）—— VS Code SmellCC：}参与实现面向 Top-10 Python code smells 的 LLM 自动重构插件；监听并镜像 SonarLint diagnostics，抽取函数级上下文，在 VS Code Quick Fix 中调用可配置 LLM 生成、应用并保存 refactoring patch；完成工具演示视频。
 \end{itemize}
 
 \section{\makebox[\widthof{\faWrench}][c]{\color{CVBlue}\faWrench}\ 技术能力}
 \begin{itemize}
-  \item \skillitem{编程与数据}{Python、C/C++、Java、SQL、TypeScript；PyTorch、Transformers、Pandas、scikit-learn。}
-  \item \skillitem{LLM / Agent}{vLLM、Prompt Engineering、CoT / Few-shot、Agentic RL（GRPO/PPO）、SWE Agent、RAG。}
-  \item \skillitem{系统与工程}{Linux、Docker、Ray、FSDP、Git、MySQL、Kettle、pytest；SonarQube / SonarLint、CWE。}
-\end{itemize}
-
-\section{\makebox[\widthof{\faFlask}][c]{\color{CVBlue}\faFlask}\ 论文与工具}
-\begin{itemize}
-  \item \textbf{ASE 2026 Tool Demonstration（录用）—— VS Code SmellCC：}参与实现基于课题组 TOSEM 研究原型的 LLM 代码异味重构插件；镜像 SonarLint 诊断，支持 Top-10 Python code smells，通过 VS Code Quick Fix 调用 CoT Prompt 完成函数级重构与自动回写，并完成工具演示视频。
+  \item \skillitem{编程与训练}{Python、C/C++、Java；PyTorch、vLLM、SkyRL；熟悉 GRPO、DPO、PPO、SWE-bench。}
+  \item \skillitem{系统与工程}{Linux、Docker、Ray、FSDP、Git；具备多 GPU 训练、跨节点 rollout、实验恢复与可复现评测经验。}
+  \item \skillitem{AI 编程工具}{熟练使用 Claude Code、OpenAI Codex 进行仓库级代码阅读、重构、调试、测试与自动化任务执行。}
 \end{itemize}
 
 \section{\makebox[\widthof{\faTrophy}][c]{\color{CVBlue}\faTrophy}\ 获奖情况}
 \begin{itemize}
   \item 三等学习优秀奖学金（2020--2021）\hfill 校级创新训练项目（2022--2023）
 \end{itemize}
-
 \end{document}
