@@ -1,2 +1,31 @@
-% Updated resume content generated for Zhang Yujie.
-% Full source replacement omitted here?
+\documentclass[11pt]{article}
+\usepackage{xltxtra,hyperref,xcolor,graphicx,tikz,fontspec,xeCJK,enumitem,fontawesome}
+\usepackage[a4paper,left=1.2cm,right=1.2cm,top=1.2cm,bottom=1cm]{geometry}
+\definecolor{CVBlue}{RGB}{23,110,191}
+\setmainfont{TeX Gyre Termes}
+\setCJKmainfont{Noto Sans CJK SC}
+\setlist[itemize]{noitemsep,topsep=0.15em}
+\begin{document}\pagenumbering{gobble}
+\begin{tikzpicture}[remember picture,overlay]\node[anchor=north east] at ($(current page.north east)+(-1.5cm,-1cm)$){\includegraphics[height=3cm]{avatar.jpg}};\end{tikzpicture}
+\begin{center}{\LARGE\bfseries 张钰杰}\\浙江大学 软件工程硕士（LLM4SE）\\\faPhone\ 18035648428\quad \faEnvelopeO\ zhang.yujie@zju.edu.cn\end{center}
+\section*{教育背景}
+\textbf{北京交通大学 软件工程 本科}\hfill 2020.09--2024.06\\学院公示排名：课程成绩52/183（前30\%），数学与专业能力37/183（前20\%）
+
+\textbf{浙江大学 软件工程 研究生}\hfill 2025.09--至今\\区块链与数据安全全国重点实验室；研究方向：智能化软件工程（LLM4SE）
+\section*{项目经历}
+\textbf{基于 LLM Agent 的 Rust 项目自动化构建与修复系统}\hfill 2025.06--2025.12
+\begin{itemize}\item 设计文档解析、网络检索、指令执行协同的多智能体架构，利用 LLM 自动抽取依赖和构建流程。\item 构建基于编译日志与测试反馈的错误自愈闭环。\end{itemize}
+\textbf{面向 SWE Agent 的 Outcome-only Agentic RL 训练系统}\hfill 2026--至今
+\begin{itemize}\item 基于 SkyRL 与 Mini-SWE-Agent 搭建 SWE Agent 强化学习训练链路，采用 Mixed408、K=8 rollout、Docker sandbox 和 harness 验证。\item 实现 outcome-only GRPO 训练、轨迹优势计算、FSDP 更新和 vLLM 同步，使用4×A800完成训练实验。\end{itemize}
+\section*{实习经历}
+\textbf{华为2012实验室 软件安全算法实习生}\hfill 2025.12--2026.04
+\begin{itemize}\item 构建 LLM 辅助漏洞检测与 CWE 分类流水线，完成数据清洗、标签映射和评估。\item 设计 CoT/Few-shot Prompt 与规则校验机制优化易混淆漏洞类别识别。\end{itemize}
+\textbf{中建材信云智联 大模型部/数据中台部 实习生}\hfill 2024.03--2024.06
+\begin{itemize}\item 参与数据治理、ETL 开发及 Text-to-SQL（DB-GPT）评估，构建300+复杂查询测试集。\end{itemize}
+\section*{技术能力}
+Python、C/C++、Java、SQL、PyTorch、Transformers、vLLM、Agentic RL、GRPO/PPO、Docker、Ray、FSDP、RAG、Prompt Engineering
+\section*{论文与工具}
+ASE 2026 Tool Demonstration：VS Code SmellCC，基于 LLM 的代码异味检测与自动重构插件，结合 SonarLint、CoT Prompt 和 Quick Fix 完成函数级重构。
+\section*{获奖情况}
+三等学习优秀奖学金（2020--2021）；校级创新训练项目（2022--2023）
+\end{document}
