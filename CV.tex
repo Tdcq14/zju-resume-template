@@ -68,10 +68,10 @@
 \end{itemize}
 
 \section{\makebox[\widthof{\faCode}][c]{\color{CVBlue}\faCode}\ 项目经历}
-\textbf{基于 LLM Agent 的 Rust 项目自动化构建与修复系统} \hfill 2025.06 -- 2025.12 \titlebreak
-\textit{Agent / 系统研发}
+\textbf{基于多智能体协作的软件项目自动化构建与修复系统} \hfill 2025.05 -- 2025.12 \titlebreak
+\textit{Multi-Agent / 系统研发}
 \begin{itemize}
-  \item 设计文档解析、依赖检索、命令执行与构建验证协同的 Agent 架构；解析 README/Wiki/Cargo 配置，生成可执行构建计划，并在 Docker 中完成工具链安装、编译与测试。
+  \item 面向 C/C++/Rust 项目，设计由文档解析、依赖检索、环境配置、命令执行和构建验证模块协同的多智能体架构；解析 README/Wiki 与构建配置，生成可执行构建计划并在 Docker 中完成编译与测试。
   \item 设计分层 Context/Memory：工作记忆维护当前阶段、关键命令与最新错误，长期记忆沉淀已验证依赖、环境配置和修复经验；通过摘要压缩、检索回填与去重控制上下文长度，减少重复试错与历史噪声。
   \item 基于 compiler/test feedback 构建 plan--execute--observe--reflect 自愈闭环，按错误类型更新计划、回滚失败操作并迭代生成修复动作。\newline
   \textbf{技术栈：}Docker、vLLM、Web Crawler、Context/Memory Management、Error Recovery。
@@ -88,11 +88,11 @@
 
 \section{\makebox[\widthof{\faBriefcase}][c]{\color{CVBlue}\faBriefcase}\ 实习经历}
 \textbf{华为 2012 实验室} \hfill 2025.12 -- 2026.04 \titlebreak
-\textit{软件安全算法实习生}
+\textit{科研实习生（LLM for Code）}
 \begin{itemize}
-  \item 构建面向 C/C++ 与 Java 的 LLM 辅助 CWE 多分类与安全代码审查流水线，覆盖样本清洗、结构化推理、批量调用、结果解析及分语言 Precision/Recall/F1 评估。
-  \item 搭建可恢复的批量推理执行器：统一封装 DeepSeek-V3 与 Qwen 调用接口，对超时/限流、非法 JSON 和越界标签进行分级重试、模型降级与样本级结果追踪，保证长批次任务稳定执行。
-  \item 针对 CWE-754/755/190 高混淆样本，抽象“异常检测—异常处理—算术风险”判别轴，结合代码结构特征与错误样例归因迭代类别规则，分析不同模型在近邻 CWE 上的决策边界。
+  \item 构建面向 C/C++ 与 Java 的 LLM 辅助 CWE 多分类实验流水线，覆盖样本清洗、结构化推理、批量调用、结果解析及分语言 Precision/Recall/F1 评估。
+  \item 面向不同 CWE 构建结构化领域知识库，将漏洞定义、判别规则、推理步骤与典型代码样例组织为 few-shot context，并设计 CoT 推理模板，增强 CWE-754/755/190 等近邻类别的可分性。
+  \item 针对模型幻觉与输出不稳定，设计标签白名单、JSON 结构约束和规则一致性校验；对非法输出与规则冲突样本触发复核，并结合主备模型兜底及错误样例迭代降低无效结果和类别误判。
 \end{itemize}
 \projectsep
 
@@ -115,8 +115,8 @@
   \item \skillitem{AI 编程工具}{熟练使用 Claude Code、OpenAI Codex 进行仓库级代码阅读、重构、调试、测试与自动化任务执行。}
 \end{itemize}
 
-\section{\makebox[\widthof{\faTrophy}][c]{\color{CVBlue}\faTrophy}\ 获奖情况}
+\section{\makebox[\widthof{\faTrophy}][c]{\color{CVBlue}\faTrophy}\ 荣誉与活动}
 \begin{itemize}
-  \item 三等学习优秀奖学金（2020--2021）\hfill 校级创新训练项目（2022--2023）
+  \item 国家励志奖学金（2020--2021、2022--2023）；校级创新训练项目（2022--2023）；浙江大学软件学院科学与技术协会理事。
 \end{itemize}
 \end{document}
