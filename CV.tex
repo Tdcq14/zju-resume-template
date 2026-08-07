@@ -54,7 +54,7 @@
 {\faPhone\ 19730058324 \quad
  \faEnvelopeO\ \href{mailto:zhang.yujie@zju.edu.cn}{zhang.yujie@zju.edu.cn} \quad
  \faGithubSquare\ \href{https://github.com/Tdcq14}{github.com/Tdcq14}}\\[0.10em]
-{\textbf{Research Interest：}LLM Post-training（Agentic RL / OPD） · Agent Systems \& Harness（Claude Code / Codex / SWE-agent）}\\[-0.10em]
+{\textbf{Research Interest：}LLM Post-training（Agentic RL / Preference Optimization / On-Policy Distillation） · Agent Systems \& Evaluation（SWE / Terminal Agents）}\\[-0.10em]
 {\color{CVBlue}\rule{0.82\textwidth}{0.55pt}}
 
 \section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faGraduationCap}\ 教育背景}
@@ -71,10 +71,10 @@
 \textbf{基于多智能体协作的软件项目自动化构建与修复系统} \hfill 2025.05 -- 2025.12 \titlebreak
 \textit{多智能体系统 / Agent 工程}
 \begin{itemize}
-  \item 面向 C/C++/Rust 项目，设计由文档解析、依赖检索、环境配置、命令执行和构建验证模块协同的多智能体架构；解析 README/Wiki 与构建配置，生成构建计划并在 Docker 中完成编译与测试。
+  \item 面向 C/C++/Rust 项目，设计文档解析、依赖检索、环境配置、命令执行与构建验证协同的多智能体架构；解析 README/Wiki 与构建配置生成执行计划，并基于 compiler/test feedback 迭代修复构建失败。
   \item 设计分层 Context/Memory：工作记忆维护当前阶段、关键命令与最新错误，长期记忆沉淀已验证依赖、环境配置和修复经验；通过摘要压缩、检索回填与去重控制上下文长度，减少重复试错与历史噪声。
-  \item 基于 compiler/test feedback 构建 plan--execute--observe--reflect 自愈闭环，按错误类型更新计划、回滚失败操作并迭代生成修复动作。\newline
-  \textbf{技术栈：}Docker、vLLM、Web Crawler、Context/Memory Management、Error Recovery。
+  \item 构建可复现的容器化评测流程，将环境与成功构建过程固化为 Dockerfile、build.sh 和 summary.md，记录命令轨迹、LLM 调用、耗时及构建结果；设置 Agent-assisted 与 direct-build baseline，支持异构仓库批量评测与失败归因。\newline
+  \textbf{技术栈：}Docker、vLLM、Web Crawler、Context/Memory Management、Reproducible Benchmarking。
 \end{itemize}
 \projectsep
 
@@ -119,7 +119,7 @@
 \section{\makebox[\widthof{\faWrench}][c]{\color{CVBlue}\faWrench}\ 技术能力}
 \begin{itemize}
   \item \skillitem{后训练与 Agent}{PyTorch、vLLM、SkyRL；熟悉 GRPO、DPO、PPO、OPD、reward design 与 credit assignment。}
-  \item \skillitem{系统与 Harness}{Linux、Docker、Ray、FSDP、Git、SWE-bench；具备多 GPU 训练、跨节点 rollout、实验恢复与可复现评测经验。}
+  \item \skillitem{系统与评测}{Linux、Docker、Ray、FSDP、Git、SWE-bench；具备多 GPU 训练、sandbox/harness 构建、跨节点 rollout 与可复现 benchmark 经验。}
   \item \skillitem{AI 编程工具}{熟练使用 Claude Code、OpenAI Codex 进行仓库级代码阅读、重构、调试、测试与自动化任务执行。}
 \end{itemize}
 
