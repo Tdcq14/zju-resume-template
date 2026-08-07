@@ -53,7 +53,7 @@
 {\faPhone\ 19730058324 \quad
  \faEnvelopeO\ \href{mailto:zhang.yujie@zju.edu.cn}{zhang.yujie@zju.edu.cn} \quad
  \faGithubSquare\ \href{https://github.com/Tdcq14}{github.com/Tdcq14}}\\[0.10em]
-{\textbf{Research Interest：}LLM Post-training（Agentic RL / OPD） · Agent Systems \& Harness（Claude Code / Codex / SWE-agent）}\\[-0.10em]
+{\textbf{Research Interest：}LLM Post-training（Agentic RL / OPD） · Agent Systems（Context / Memory / Harness）}\\[-0.10em]
 {\color{CVBlue}\rule{0.82\textwidth}{0.55pt}}
 
 \section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faGraduationCap}\ 教育背景}
@@ -82,15 +82,15 @@
 \begin{itemize}
   \item 面向长上下文交互研究子任务拆分与 trajectory compression；利用 State--Action Tree（SAT）定位关键及低价值状态--动作，结合 OPSD re-decision 重规划失败分支，并构造偏好对进行 DPO 优化。
   \item 基于 SkyRL + Mini-SWE-Agent 搭建 $K=8$ on-policy rollout、Docker sandbox 与 SWE harness 评测链路；在 Mixed408 上使用 4$\times$A800 完成 3,264 条 rollout / 51 个优化步，并在 held-out SWE-bench Verified500 上以统一环境、token budget 和 harness 配置进行评测。
-  \item 研究 GRPO 在稀疏终局奖励下的 credit assignment，尝试引入 verifier 辅助反馈与时序信用分配，将轨迹级训练信号路由至关键 turn/token。
+  \item 围绕 GRPO 在稀疏终局奖励下的 credit assignment，探索 verifier 辅助反馈与时序信用分配，将轨迹级训练信号路由至关键 turn/token。
 \end{itemize}
 
 \section{\makebox[\widthof{\faBriefcase}][c]{\color{CVBlue}\faBriefcase}\ 实习与科研实践}
 \textbf{腾讯（代码智能方向研究）} \hfill 2026.04 -- 2026.08 \titlebreak
 \textit{项目组成员}
 \begin{itemize}
-  \item 面向真实 New Feature 开发任务，参与构建“需求描述--测试变更--代码实现”对齐的数据流程，采集并规范化开源项目 PR，抽取需求、测试补丁、实现补丁及测试执行结果。
-  \item 研究需求与测试协同驱动的代码生成，参与需求导向测试生成、测试反馈结构化及基于强化学习的代码优化方案设计，以编译与测试结果作为模型迭代信号。
+  \item 面向真实 New Feature 开发任务，负责前期数据采集与规范化，构建“需求描述--测试变更--代码实现”对齐的数据样本，抽取需求、测试补丁、实现补丁及测试执行结果。
+  \item 围绕需求与测试协同驱动的代码生成，参与需求导向测试生成、测试反馈结构化与基于强化学习的代码优化方案设计，将编译/测试结果作为可验证反馈信号。
 \end{itemize}
 \projectsep
 
@@ -98,7 +98,7 @@
 \textit{科研实习生}
 \begin{itemize}
   \item 构建面向 C/C++ 与 Java 的 LLM 辅助 CWE 多分类实验流水线，覆盖样本清洗、结构化推理、批量调用、结果解析及分语言 Precision/Recall/F1 评估。
-  \item 面向不同 CWE 构建结构化领域知识库，将漏洞定义、判别规则、推理步骤与典型代码样例组织为 few-shot context，并设计 CoT 推理模板，增强 CWE-754/755/190 等近邻类别的可分性。
+  \item 针对不同 CWE 设计类别知识卡与 CoT/few-shot 推理模板，组织漏洞定义、判别规则、典型代码样例与反例，强化 CWE-754/755/190 等近邻类别区分。
   \item 分析 LLM 在漏洞分类任务中的 hallucination 来源，设计结构化输出约束与规则后处理策略，对非法标签、格式错误及近邻类别冲突进行校验与复核，提升输出可靠性。
 \end{itemize}
 \projectsep
@@ -110,7 +110,7 @@
   \item 负责 DB-GPT Text-to-SQL 落地评估，构建 300+ 条复杂查询 benchmark，覆盖多表关联、聚合与嵌套查询；分析 schema linking、join path 与 hallucination 错误，并通过数据库元数据注入、表关系约束和 SQL 输出校验优化生成质量。
 \end{itemize}
 
-\section{\makebox[\widthof{\faFlask}][c]{\color{CVBlue}\faFlask}\ 科研与工具}
+\section{\makebox[\widthof{\faFlask}][c]{\color{CVBlue}\faFlask}\ 科研成果}
 \begin{itemize}
   \item \textbf{ASE 2026 Tool Demo Paper（CCF-A，录用）—— VS Code SmellCC：}参与实现面向 Top-10 Python code smells 的 LLM 自动重构插件；镜像 SonarLint diagnostics，抽取函数级上下文，并在 VS Code Quick Fix 中调用 LLM 生成和应用 refactoring patch。
 \end{itemize}
@@ -118,8 +118,7 @@
 \section{\makebox[\widthof{\faWrench}][c]{\color{CVBlue}\faWrench}\ 技术能力}
 \begin{itemize}
   \item \skillitem{后训练与 Agent}{PyTorch、vLLM、SkyRL；熟悉 GRPO、DPO、PPO、OPD、reward design 与 credit assignment。}
-  \item \skillitem{系统与评测}{Linux、Docker、Ray、FSDP、Git、SWE-bench；具备多 GPU 训练、sandbox/harness 构建、跨节点 rollout 与可复现 benchmark 经验。}
-  \item \skillitem{AI 编程工具}{熟练使用 Claude Code、OpenAI Codex 进行仓库级代码阅读、重构、调试、测试与自动化任务执行。}
+  \item \skillitem{系统与工程}{Linux、Docker、Ray、FSDP、Git、SWE-bench；具备多 GPU 训练、sandbox/harness 构建、跨节点 rollout 与可复现 benchmark 经验；熟悉 Claude Code、Codex 等 AI Coding 工具。}
 \end{itemize}
 
 \section{\makebox[\widthof{\faTrophy}][c]{\color{CVBlue}\faTrophy}\ 获奖情况}
