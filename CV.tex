@@ -7,8 +7,6 @@
 \definecolor{CVBlue}{RGB}{23,110,191}
 \usepackage{calc}
 \usepackage{graphicx}
-\usepackage{tikz}
-\usetikzlibrary{calc}
 \usepackage{fontspec}
 \usepackage{xeCJK}
 \usepackage{enumitem}
@@ -43,19 +41,25 @@
 \pagenumbering{gobble}
 \small
 
-\begin{tikzpicture}[remember picture,overlay]
-  \node[anchor=north east,inner sep=0pt,draw=CVBlue,line width=0.45pt]
-  at ($(current page.north east)+(-1.20cm,-0.62cm)$)
-  {\includegraphics[width=2.05cm,height=2.80cm,keepaspectratio]{avatar.jpg}};
-\end{tikzpicture}
-
+% Fixed two-column header: text and avatar occupy independent layout regions.
+\noindent
+\begin{minipage}[t]{0.76\textwidth}
+\vspace{0pt}
 {\LARGE\bfseries 张钰杰}\\[0.13em]
 {\normalsize 浙江大学软件学院 · 软件工程硕士}\\[0.16em]
 {\faPhone\ 19730058324 \quad
  \faEnvelopeO\ \href{mailto:zhang.yujie@zju.edu.cn}{zhang.yujie@zju.edu.cn} \quad
- \faGithubSquare\ \href{https://github.com/Tdcq14}{github.com/Tdcq14}}\\[0.10em]
-\parbox[t]{0.76\textwidth}{\footnotesize\textbf{Research Interest：}LLM Post-training（Agentic RL / DPO / OPD） · SWE/Terminal Agent Systems \& Evaluation}\\[-0.10em]
-{\color{CVBlue}\rule{0.78\textwidth}{0.55pt}}
+ \faGithubSquare\ \href{https://github.com/Tdcq14}{github.com/Tdcq14}}\\[0.11em]
+{\footnotesize\textbf{Research Interest：}LLM Post-training（Agentic RL / DPO / OPD）}\\[-0.02em]
+{\footnotesize SWE/Terminal Agent Systems \& Evaluation}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.20\textwidth}
+\vspace{0pt}
+\raggedleft
+\fcolorbox{CVBlue}{white}{\includegraphics[width=2.05cm,height=2.80cm,keepaspectratio]{avatar.jpg}}
+\end{minipage}\\[-0.05em]
+{\color{CVBlue}\rule{\textwidth}{0.55pt}}
 
 \section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faGraduationCap}\ 教育背景}
 \entry{2025.09 -- 至今}{浙江大学}{软件工程}{研究生}
