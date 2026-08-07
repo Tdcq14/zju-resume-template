@@ -24,18 +24,18 @@
     BoldFont = NotoSansSC-Bold.ttf
 ]{NotoSansSC-Regular.ttf}
 \usepackage{fontawesome}
-\usepackage[a4paper,left=1.15cm,right=1.15cm,top=0.82cm,bottom=0.58cm,nohead]{geometry}
-\renewcommand{\baselinestretch}{1.06}
+\usepackage[a4paper,left=1.15cm,right=1.15cm,top=0.78cm,bottom=0.52cm,nohead]{geometry}
+\renewcommand{\baselinestretch}{1.03}
 \usepackage{titlesec}
-\setlist[itemize]{nosep,topsep=0.06em,leftmargin=1.42em,labelsep=0.42em}
+\setlist[itemize]{nosep,topsep=0.02em,leftmargin=1.42em,labelsep=0.42em}
 \newlength{\interProjectSpacing}
-\setlength{\interProjectSpacing}{0.20em}
+\setlength{\interProjectSpacing}{0.14em}
 \newcommand{\projectsep}{\vspace{\interProjectSpacing}}
 \newlength{\intraProjectTitleSep}
-\setlength{\intraProjectTitleSep}{0.04em}
+\setlength{\intraProjectTitleSep}{0.03em}
 \newcommand{\titlebreak}{\\[\intraProjectTitleSep]}
 \titleformat{\section}{\large\bfseries\raggedright}{}{0em}{}[{\color{CVBlue}\titlerule}]
-\titlespacing*{\section}{0cm}{0.42em}{0.20em}
+\titlespacing*{\section}{0cm}{0.32em}{0.14em}
 \newcommand{\entry}[4]{\textbf{#2}\hfill #1\\[-0.10em]#3\hfill #4}
 \newcommand{\skillitem}[2]{\textbf{#1：}#2}
 
@@ -71,7 +71,7 @@
 \textbf{基于多智能体协作的软件项目自动化构建与修复系统} \hfill 2025.05 -- 2025.12 \titlebreak
 \textit{多智能体系统 / Agent 工程}
 \begin{itemize}
-  \item 面向 C/C++/Rust 项目，设计由文档解析、依赖检索、环境配置、命令执行和构建验证模块协同的多智能体架构；解析 README/Wiki 与构建配置，生成可执行构建计划并在 Docker 中完成编译与测试。
+  \item 面向 C/C++/Rust 项目，设计由文档解析、依赖检索、环境配置、命令执行和构建验证模块协同的多智能体架构；解析 README/Wiki 与构建配置，生成构建计划并在 Docker 中完成编译与测试。
   \item 设计分层 Context/Memory：工作记忆维护当前阶段、关键命令与最新错误，长期记忆沉淀已验证依赖、环境配置和修复经验；通过摘要压缩、检索回填与去重控制上下文长度，减少重复试错与历史噪声。
   \item 基于 compiler/test feedback 构建 plan--execute--observe--reflect 自愈闭环，按错误类型更新计划、回滚失败操作并迭代生成修复动作。\newline
   \textbf{技术栈：}Docker、vLLM、Web Crawler、Context/Memory Management、Error Recovery。
@@ -81,18 +81,26 @@
 \textbf{面向长程 SWE Agent 的 Agentic RL 研究} \hfill 2026.04 -- 至今 \titlebreak
 \textit{SWE Agent / RL Post-training}
 \begin{itemize}
-  \item 面向长上下文交互研究子任务拆分与 trajectory compression：基于 SAT 识别关键状态及任务依赖，结合 OPSD re-decision 对失败分支进行重规划、压缩冗余历史，并构造优质/劣质轨迹对进行 DPO 优化。
+  \item 面向长上下文交互研究子任务拆分与 trajectory compression；利用 State--Action Tree（SAT）定位关键及低价值状态--动作，结合 OPSD re-decision 重规划失败分支，并构造偏好对进行 DPO 优化。
   \item 基于 SkyRL + Mini-SWE-Agent 搭建 $K=8$ on-policy rollout、Docker sandbox 与 SWE harness 评测链路；在 Mixed408 上使用 4$\times$A800 完成 3,264 条 rollout / 51 个优化步，并在 held-out SWE-bench Verified500 上以统一环境、token budget 和 harness 配置进行评测。
   \item 研究 GRPO 在稀疏终局奖励下的 credit assignment，尝试引入 verifier 辅助反馈与时序信用分配，将轨迹级训练信号路由至关键 turn/token。
 \end{itemize}
 
 \section{\makebox[\widthof{\faBriefcase}][c]{\color{CVBlue}\faBriefcase}\ 实习经历}
+\textbf{腾讯（校企联合科研项目）} \hfill 2026.04 -- 2026.08 \titlebreak
+\textit{科研实习生}
+\begin{itemize}
+  \item 面向真实 New Feature 开发任务，参与构建“需求描述--测试变更--代码实现”对齐的数据流程，采集并规范化开源项目 PR，抽取需求、测试补丁、实现补丁及测试执行结果。
+  \item 研究需求与测试协同驱动的代码生成，参与需求导向测试生成、测试反馈结构化及基于强化学习的代码优化方案设计，以编译与测试结果作为模型迭代信号。
+\end{itemize}
+\projectsep
+
 \textbf{华为 2012 实验室} \hfill 2025.12 -- 2026.04 \titlebreak
 \textit{科研实习生}
 \begin{itemize}
   \item 构建面向 C/C++ 与 Java 的 LLM 辅助 CWE 多分类实验流水线，覆盖样本清洗、结构化推理、批量调用、结果解析及分语言 Precision/Recall/F1 评估。
   \item 面向不同 CWE 构建结构化领域知识库，将漏洞定义、判别规则、推理步骤与典型代码样例组织为 few-shot context，并设计 CoT 推理模板，增强 CWE-754/755/190 等近邻类别的可分性。
-  \item 针对模型幻觉与输出不稳定，设计标签白名单、JSON 结构约束和规则一致性校验；对非法输出与规则冲突样本触发复核，并结合主备模型兜底及错误样例迭代降低无效结果和类别误判。
+  \item 分析 LLM 在漏洞分类任务中的 hallucination 来源，设计结构化输出约束与规则后处理策略，对非法标签、格式错误及近邻类别冲突进行校验与复核，提升输出可靠性。
 \end{itemize}
 \projectsep
 
@@ -105,7 +113,7 @@
 
 \section{\makebox[\widthof{\faFlask}][c]{\color{CVBlue}\faFlask}\ 科研与工具}
 \begin{itemize}
-  \item \textbf{ASE 2026 Tool Demonstration（录用）—— VS Code SmellCC：}参与实现面向 Top-10 Python code smells 的 LLM 自动重构插件；监听并镜像 SonarLint diagnostics，抽取函数级上下文，在 VS Code Quick Fix 中调用可配置 LLM 生成、应用并保存 refactoring patch；完成工具演示视频。
+  \item \textbf{ASE 2026 Tool Demo Paper（CCF-A，录用）—— VS Code SmellCC：}参与实现面向 Top-10 Python code smells 的 LLM 自动重构插件；镜像 SonarLint diagnostics，抽取函数级上下文，并在 VS Code Quick Fix 中调用 LLM 生成和应用 refactoring patch。
 \end{itemize}
 
 \section{\makebox[\widthof{\faWrench}][c]{\color{CVBlue}\faWrench}\ 技术能力}
