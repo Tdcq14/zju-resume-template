@@ -89,22 +89,23 @@
 \textbf{腾讯（代码智能方向研究）} \hfill 2026.04 -- 2026.08 \titlebreak
 \textit{项目组成员}
 \begin{itemize}
-  \item 面向真实 New Feature 开发任务，参与任务建模、数据采集与合成，构建“需求描述--测试变更--代码实现”对齐的数据样本，抽取需求、测试补丁、实现补丁及执行结果。
-  \item 围绕需求与测试协同驱动的代码生成，推进需求导向测试生成与可执行评测，为后续基于测试反馈的 RL 代码优化构建数据与环境基础。
+  \item 面向真实 New Feature 开发任务，推进“需求描述--测试变更--代码实现”对齐的数据建模与合成；采集并规范化开源项目 PR，抽取需求、实现 patch、测试 patch 与测试执行结果，形成可训练、可评测的结构化样本。
+  \item 围绕需求与测试协同驱动的代码生成，研究 requirement-driven test generation、测试反馈结构化与样本质量控制；将 compile/test 结果组织为可验证反馈，为后续 SFT / RL Post-training 提供数据与 evaluator 基础。
 \end{itemize}
 \projectsep
 
 \textbf{华为 2012 实验室} \hfill 2025.12 -- 2026.04 \titlebreak
 \textit{科研实习生}
 \begin{itemize}
-  \item 构建面向 C/C++ 与 Java 的 LLM 辅助 CWE 多分类实验流水线，完成样本清洗、批量推理、结果解析与分语言 Precision/Recall/F1 评估。
-  \item 针对近邻 CWE 设计类别知识卡、CoT/few-shot 模板与结构化输出约束，并按非法标签、格式错误、类别冲突等 hallucination 类型进行分析与规则后处理。
+  \item 搭建面向 C/C++ 与 Java 的 LLM 辅助 CWE 多分类评测流水线，统一 Prompt、批量模型调用、结构化结果解析与分语言/分类别 Precision、Recall、F1 统计，并基于错误样本迭代分类策略。
+  \item 针对 CWE-754/755/190 等近邻类别整理漏洞定义、判别规则、典型样例与反例，设计 CoT/few-shot 推理模板；结合标签白名单、JSON 输出约束、规则一致性校验及主备模型兜底，降低非法输出与类别混淆。
 \end{itemize}
 \projectsep
 
 \textbf{中建材信云智联公司 · 数据中台部 / 大模型部} \hfill 2024.03 -- 2024.06 \titlebreak
 \textit{实习生}
 \begin{itemize}
+  \item 参与数仓分层治理与 ETL 任务开发，基于 SQL/Kettle 完成数据抽取、转换、入仓及任务校验。
   \item 负责 DB-GPT Text-to-SQL 落地评估，构建 300+ 条复杂查询 benchmark；分析 schema linking、join path 与 hallucination，并通过数据库元数据注入、表关系约束和 SQL 输出校验改进生成质量。
 \end{itemize}
 
@@ -115,8 +116,8 @@
 
 \section{\makebox[\widthof{\faWrench}][c]{\color{CVBlue}\faWrench}\ 技术能力}
 \begin{itemize}
-  \item \skillitem{后训练与研究}{熟悉 PPO、GRPO、DPO、OPD、reward design 与 credit assignment；持续跟进主流模型后训练技术报告与 Agentic RL / On-Policy Distillation 相关论文，基于 SkyRL 完成多 GPU rollout、训练与实验复现。}
-  \item \skillitem{Agent 系统与工程}{具备 Docker sandbox、Agent harness、可复现 benchmark 与跨节点 rollout 实践；了解 vLLM 的 PagedAttention / continuous batching 与 Ray 分布式执行，熟悉 Claude Code、Codex 等 coding-agent 工具及其 tool-use / harness 工作流。}
+  \item \skillitem{Post-training / RL}{熟悉 PPO、GRPO、DPO、OPD、reward design 与 credit assignment；持续跟进主流模型后训练技术报告与 Agentic RL / On-Policy Distillation 相关工作，关注长程 Agent 的 reward、credit 与 rollout/evaluation 机制。}
+  \item \skillitem{Agent / Evaluation}{具备 Docker sandbox、Agent harness、可复现 benchmark 与多 GPU / 跨节点 rollout 实践；关注并使用 Claude Code、Codex、pi-agent 等 Coding Agent 工具，了解相关公开系统设计与 tool-use / harness 工作流。}
 \end{itemize}
 
 \section{\makebox[\widthof{\faTrophy}][c]{\color{CVBlue}\faTrophy}\ 获奖情况}
