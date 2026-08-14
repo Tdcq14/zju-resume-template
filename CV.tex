@@ -71,7 +71,7 @@
 \textit{多智能体系统 / Agent 工程}
 \begin{itemize}
   \item 面向 C/C++/Rust 项目，设计文档解析、依赖检索、环境配置、命令执行与构建验证协同的多智能体架构；解析 README/Wiki 与构建配置生成执行计划，并基于 compiler/test feedback 迭代修复构建失败。
-  \item 围绕构建失败恢复，解析 compiler/linker/dependency/test 等执行反馈，保留关键错误、最近命令与已验证环境信息作为后续决策依据，并限制冗长原始日志持续进入上下文，减少重复试错。
+  \item 针对多轮构建产生的长日志与重复信息，保留当前阶段、关键命令、最新错误及已验证依赖/环境信息，限制低价值历史持续进入 Context，减少重复试错与上下文噪声。
   \item 构建可复现的容器化评测流程，将环境与成功构建过程固化为 Dockerfile、build.sh 和 summary.md，记录命令轨迹、LLM 调用、耗时及构建结果；设置 Agent-assisted 与 direct-build baseline，支持异构仓库批量评测与失败归因。
 \end{itemize}
 \projectsep
@@ -79,33 +79,31 @@
 \textbf{面向长程 SWE Agent 的 Agentic RL 研究} \hfill 2026.04 -- 至今 \titlebreak
 \textit{SWE Agent / RL Post-training}
 \begin{itemize}
-  \item \textbf{Preference Credit：}针对整轨迹 DPO 中 chosen/rejected 内部优劣步骤混杂的问题，探索按子任务阶段对齐轨迹，并结合局部 verifier 与阶段全局重要性重加权 preference signal；随后转向基于 State--Action Tree（SAT）与 OPSD re-decision 构造 step-level preference 对，开展 Step-DPO 探索。
-  \item \textbf{RL Baseline：}基于 SkyRL + Mini-SWE-Agent 搭建 $K=8$ on-policy rollout、Docker sandbox 与 SWE harness 评测链路；在 Mixed408 上使用 4$\times$A800 完成 3,264 条 rollout / 51 个优化步，并在 held-out SWE-bench Verified500 上以统一环境、token budget 和 harness 配置进行评测。
-  \item \textbf{Credit Assignment：}在 outcome-only GRPO 基线上分析轨迹级 advantage 广播至整条 policy trajectory 带来的粗粒度 credit 问题，进一步探索 verifier / task-driven auxiliary signal 与时序 credit routing，将训练信号更保守地分配至关键 turn/token。
+  \item \textbf{Trajectory Filtering：}针对长程 Agent rollout 质量参差问题，借鉴 LLM-as-Verifier 的 test-time scaling（TTS）候选筛选思路，将 verifier 引入 training-time 数据构造，对轨迹进行质量评估、筛选与二次处理，保留高质量样本构造离线 preference data。
+  \item \textbf{Step-level Preference：}针对整轨迹难以进行细粒度偏好学习的问题，利用 State--Action Tree（SAT）定位轨迹分叉点并构造共享前缀；结合 OPSD re-decision，将当前 policy 作为 self-teacher，在同一前缀下注入特权信息生成 chosen action，与原分支动作构造 step-level preference pair 进行 DPO 优化。
+  \item \textbf{GRPO Credit：}基于 SkyRL + Mini-SWE-Agent 搭建 $K=8$ on-policy rollout、Docker sandbox 与 SWE harness，在 Mixed408 上使用 4$\times$A800 完成 3,264 条 rollout / 51 个优化步；针对 outcome-only GRPO 将 trajectory-level advantage 广播至整条轨迹带来的粗粒度 credit，探索 verifier / task-driven auxiliary signal 与 temporal credit routing，并在 held-out SWE-bench Verified500 上统一评测。
 \end{itemize}
 
 \section{\makebox[\widthof{\faBriefcase}][c]{\color{CVBlue}\faBriefcase}\ 实习与科研实践}
 \textbf{腾讯（代码智能方向研究）} \hfill 2026.04 -- 2026.08 \titlebreak
 \textit{项目组成员}
 \begin{itemize}
-  \item 面向真实 New Feature 开发任务，推进“需求描述--测试变更--代码实现”对齐的数据建模与合成；采集并规范化开源项目 PR，抽取需求、实现 patch、测试 patch 与测试执行结果，并结合样本关联性与可执行性进行质量控制，形成可训练、可评测的结构化样本。
-  \item 围绕需求与测试协同驱动的代码生成，研究 requirement-driven test generation、测试反馈结构化与样本质量控制；将 compile/test 结果组织为可验证反馈，为后续 SFT / RL Post-training 提供数据与 evaluator 基础。
+  \item 面向真实 New Feature 开发任务，推进 PR 级数据建模与合成：结合 feature intent、变更关联性与可执行性筛选候选样本，抽取 requirement、base commit、implementation patch、test patch 与执行结果，建立 requirement--test--implementation 对齐的可训练、可评测结构化实例。
+  \item 探索 requirement-driven TestAgent--CodeAgent 协同进化闭环：由 TestAgent 生成行为 probes，经 RED gate 筛选后向 CodeAgent 提供可执行失败证据，CodeAgent 生成/修复实现并通过 GREEN 与 regression gate 选择候选；沉淀 test/code/trajectory 与执行反馈，为后续 SFT / RL Post-training 提供 evaluator 与训练信号。
 \end{itemize}
 \projectsep
 
 \textbf{华为 2012 实验室} \hfill 2025.12 -- 2026.04 \titlebreak
 \textit{科研实习生}
 \begin{itemize}
-  \item 搭建面向 C/C++ 与 Java 的 LLM 辅助 CWE 多分类 benchmark 与评测链路，按语言/类别统计 Precision、Recall、F1，并基于 confusion cases 分析近邻类别失败模式与 hallucination 类型。
-  \item 针对 CWE-754/755/190 等近邻类别构建类别级知识卡，组织漏洞定义、判别规则、典型样例与反例，设计 CoT/few-shot 推理模板；结合标签白名单、JSON 输出约束与规则一致性校验，约束非法输出并辅助复核类别冲突。
+  \item 构建面向 C/C++ 与 Java 的 LLM 辅助 CWE 多分类评测链路；针对近邻类别设计类别级知识卡、CoT/few-shot 与结构化输出约束，并结合 per-class Precision/Recall/F1、confusion cases 与 hallucination 分析迭代类别判别策略。
 \end{itemize}
 \projectsep
 
 \textbf{中建材信云智联公司 · 数据中台部 / 大模型部} \hfill 2024.03 -- 2024.06 \titlebreak
 \textit{实习生}
 \begin{itemize}
-  \item 参与数仓分层治理与 ETL 任务开发，基于 SQL/Kettle 完成数据抽取、转换、入仓及任务校验。
-  \item 负责 DB-GPT Text-to-SQL 落地评估，构建 300+ 条复杂查询 benchmark；分析 schema linking、join path 与 hallucination，并通过数据库元数据注入、表关系约束和 SQL 输出校验改进生成质量。
+  \item 参与数仓分层治理与 ETL 任务开发；负责 DB-GPT Text-to-SQL 落地评估，构建 300+ 条复杂查询 benchmark，围绕 schema linking、join path 与 hallucination，通过数据库元数据注入、表关系约束和 SQL 输出校验改进生成质量。
 \end{itemize}
 
 \section{\makebox[\widthof{\faFlask}][c]{\color{CVBlue}\faFlask}\ 科研成果}
@@ -115,8 +113,8 @@
 
 \section{\makebox[\widthof{\faWrench}][c]{\color{CVBlue}\faWrench}\ 技术能力}
 \begin{itemize}
-  \item \skillitem{Post-training / Agentic RL}{熟悉 PPO、GRPO、DPO、OPD 等后训练方法及 reward / credit design；持续跟进前沿模型后训练技术报告与 Agentic RL / On-Policy Distillation 相关论文，具备多 GPU / 跨节点 rollout、训练实验与可复现评测经验。}
-  \item \skillitem{Agent Systems / Evaluation}{具备 Docker sandbox、Agent harness 与可复现 benchmark 构建经验；关注并使用 Claude Code、Codex、pi-agent 等 Coding Agent 工具，了解相关公开系统设计。}
+  \item \skillitem{Post-training / RL}{熟悉 PPO、GRPO、DPO、OPD 等后训练方法及 reward / credit design；持续跟进前沿模型后训练技术报告与 Agentic RL / On-Policy Distillation 相关论文；具备多 GPU 训练、跨节点 rollout、训练实验与可复现评测经验。}
+  \item \skillitem{Agent Systems / Evaluation}{理解长程 Agent 的 rollout--environment--reward--credit--evaluation 闭环；具备 Docker sandbox、Agent harness 与可复现 benchmark 构建经验；关注并使用 Claude Code、Codex、pi-agent 等 Coding Agent 工具，了解相关公开系统设计。}
 \end{itemize}
 
 \section{\makebox[\widthof{\faTrophy}][c]{\color{CVBlue}\faTrophy}\ 获奖情况}
