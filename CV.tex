@@ -95,9 +95,9 @@
 \section{\makebox[\widthof{\faFlask}][c]{\color{CVBlue}\faFlask}\ 科研成果}
 \textbf{ASE 2026 Tool Demo Paper（CCF-A，录用）—— SmellCC：LLM 自动代码异味重构工具}
 \begin{itemize}
-  \item \textbf{方法：}构建面向 Top-10 Python code smells 的三阶段自动重构流程：\textit{Smell Detection \& Context Extraction} $\rightarrow$ \textit{LLM-based Refactoring} $\rightarrow$ \textit{Response Parsing \& Application}；基于 SonarLint diagnostic 定位并扩展至函数级 semantic scope，结合 smell-specific CoT/few-shot prompting，在 VS Code 内完成一键重构。
-  \item \textbf{评测：}在 50 个具备可执行 test suites 的 CodeSearchNet-Python 项目上评估 15,994 个 code smell instances，取得 \textbf{96.8\% smell remediation rate} 与 \textbf{91.3\% functional correctness（regression-test pass rate）}，分别衡量 smell elimination 与 behavior preservation。
-  \item \textbf{工程增强：}在论文原型基础上实现 review-before-apply workflow：使用 VS Code native diff 展示 LLM proposal，并在 Apply 前执行 change-risk analysis 与 Python syntax validation；Apply 后结合 Sonar re-validation、refactor history 与 guarded undo，使 LLM-generated patch 在应用前可审查、应用后可验证并可安全回退。
+  \item \textbf{方法：}面向 Top-10 Python code smells 构建三阶段自动重构流程：异味检测与上下文提取、LLM 重构、响应解析与应用；其中 Context Slicer 根据 SonarLint diagnostic 定位，通过 AST 与语义范围分析提取完整函数上下文，再结合 smell-specific CoT/few-shot prompting 生成重构结果。
+  \item \textbf{评测：}在 50 个具备可执行 test suites 的 CodeSearchNet-Python 项目上评估 15,994 个 code smell instances，取得 \textbf{96.8\% smell remediation rate} 与 \textbf{91.3\% functional correctness（基于 regression tests）}，分别衡量异味消除效果与重构后的功能保持情况。
+  \item \textbf{工程增强：}在论文原型基础上完善开发者审查与验证流程：LLM 生成 patch 后先通过 VS Code native diff 预览，Apply 前进行改动范围与 Python 语法检查；Apply 后通过 Sonar re-validation 验证目标 smell，并提供 refactor history 与 guarded undo，避免回退覆盖开发者后续修改。
 \end{itemize}
 
 \section{\makebox[\widthof{\faWrench}][c]{\color{CVBlue}\faWrench}\ 技术能力}
