@@ -37,6 +37,7 @@
 \titleformat{\section}{\large\bfseries\raggedright}{}{0em}{}[{\color{CVBlue}\titlerule}]
 \titlespacing*{\section}{0cm}{0.32em}{0.14em}
 \newcommand{\entry}[4]{\textbf{#2}\hfill #1\\[-0.10em]#3\hfill #4}
+\newcommand{\skillitem}[2]{\textbf{#1：}#2}
 
 \begin{document}
 \pagenumbering{gobble}
@@ -72,20 +73,6 @@
   \item 面向真实 New Feature 开发任务，推进 PR 级数据建模与合成：结合 feature intent、变更关联性与可执行性筛选候选样本，抽取 requirement、base commit、implementation patch、test patch 与执行结果，建立 requirement--test--implementation 对齐的可训练、可评测结构化实例。
   \item 探索 requirement-driven TestAgent--CodeAgent 协同闭环：TestAgent 生成 behavior probes，经 base 上的 RED validation 筛选后向 CodeAgent 提供可执行失败证据；CodeAgent 据此生成/修复实现，经 GREEN validation 与 public regression 后选择候选；结构化记录 test/code/trajectory 及 execution feedback，为后续 SFT / RL Post-training 提供 evaluator 与训练信号。
 \end{itemize}
-\projectsep
-
-\textbf{华为 2012 实验室} \hfill 2025.12 -- 2026.04 \titlebreak
-\textit{科研实习生}
-\begin{itemize}
-  \item 构建面向 C/C++ 与 Java 的 LLM 辅助 CWE 多分类评测链路；针对近邻类别设计类别级知识卡、CoT/few-shot 与 structured output constraints，并结合 per-class Precision/Recall/F1、confusion cases、非法输出与类别混淆分析迭代类别判别策略。
-\end{itemize}
-\projectsep
-
-\textbf{中建材信云智联公司 · 数据中台部 / 大模型部} \hfill 2024.03 -- 2024.06 \titlebreak
-\textit{实习生}
-\begin{itemize}
-  \item 参与数仓分层治理与 ETL 任务开发；负责 DB-GPT Text-to-SQL 落地评估，构建 300+ 条复杂查询 benchmark，围绕 schema linking、join path 与 hallucination，通过数据库元数据注入、表关系约束和 SQL 输出校验改进生成质量。
-\end{itemize}
 
 \section{\makebox[\widthof{\faCode}][c]{\color{CVBlue}\faCode}\ 科研与项目经历}
 \textbf{面向长程 SWE Agent 的 Agentic RL 研究} \hfill 2026.04 -- 至今 \titlebreak
@@ -108,8 +95,19 @@
 \section{\makebox[\widthof{\faFlask}][c]{\color{CVBlue}\faFlask}\ 科研成果}
 \textbf{ASE 2026 Tool Demo Paper（CCF-A，录用）—— VS Code SmellCC}
 \begin{itemize}
-  \item 面向 Top-10 Python code smells，构建 SonarLint diagnostic、函数级上下文抽取与 LLM refactoring 的自动重构链路，根据诊断位置生成局部 patch 并约束修改范围。
-  \item 将重构能力集成至 VS Code Quick Fix，支持从 smell detection、上下文获取到 patch preview / apply 的 IDE 内交互流程，便于开发者审查并应用模型生成的修改。
+  \item 面向 Top-10 Python code smells，设计从 SonarLint diagnostics 到 LLM-assisted remediation 的自动重构链路：根据 smell 位置抽取函数级上下文与诊断信息，构造重构请求并生成局部 refactoring patch，控制修改范围以降低无关代码扰动。
+  \item 将自动重构能力集成至 VS Code Quick Fix，使开发者可从诊断项直接触发 LLM refactoring，并完成 patch preview / apply，形成 smell detection--context extraction--refactoring--developer review 的 IDE 内闭环。
+  \item 面向开发者审查需求补充 code diff 交互，展示重构前后及行级变更，帮助开发者在应用修改前快速判断 patch 是否符合预期，增强 LLM 自动重构过程的可验证性与可控性。
 \end{itemize}
 
+\section{\makebox[\widthof{\faWrench}][c]{\color{CVBlue}\faWrench}\ 技术能力}
+\begin{itemize}
+  \item \skillitem{Post-training / RL}{熟悉 PPO、GRPO、DPO、OPD 等后训练方法及 reward / credit design；持续跟进前沿模型后训练技术报告与 Agentic RL / On-Policy Distillation 相关论文；具备多 GPU 训练、跨节点 rollout、训练实验与可复现评测经验。}
+  \item \skillitem{Agent Systems / Evaluation}{理解长程 Agent 的 environment interaction、rollout 与 evaluation，以及 reward 与 credit assignment 机制；具备 Docker sandbox、Agent harness 与可复现 benchmark 构建经验；关注并使用 Claude Code、Codex、pi-agent 等 Coding Agent 工具，了解相关公开系统设计。}
+\end{itemize}
+
+\section{\makebox[\widthof{\faTrophy}][c]{\color{CVBlue}\faTrophy}\ 获奖情况}
+\begin{itemize}
+  \item 三等学习优秀奖学金（2020--2021）\hfill 校级创新训练项目（2022--2023）
+\end{itemize}
 \end{document}
