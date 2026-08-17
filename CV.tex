@@ -93,11 +93,11 @@
 \end{itemize}
 
 \section{\makebox[\widthof{\faFlask}][c]{\color{CVBlue}\faFlask}\ 科研成果}
-\textbf{ASE 2026 Tool Demo Paper（CCF-A，录用）—— VS Code SmellCC}
+\textbf{ASE 2026 Tool Demo Paper（CCF-A，录用）—— SmellCC：LLM 自动代码异味重构工具}
 \begin{itemize}
-  \item 面向 Top-10 Python code smells，设计从 SonarLint diagnostics 到 LLM-assisted remediation 的自动重构链路：根据 smell 位置抽取函数级上下文与诊断信息，构造重构请求并生成局部 refactoring patch，控制修改范围以降低无关代码扰动。
-  \item 将自动重构能力集成至 VS Code Quick Fix，使开发者可从诊断项直接触发 LLM refactoring，并完成 patch preview / apply，形成 smell detection--context extraction--refactoring--developer review 的 IDE 内闭环。
-  \item 面向开发者审查需求补充 code diff 交互，展示重构前后及行级变更，帮助开发者在应用修改前快速判断 patch 是否符合预期，增强 LLM 自动重构过程的可验证性与可控性。
+  \item 面向 Top-10 Python code smells，构建 Sonar diagnostic--semantic scope context extraction--smell-specific CoT/few-shot--LLM refactoring 的三阶段 pipeline，将静态分析定位与 LLM 语义重构结合，支持 VS Code 内一键生成并应用 behavior-preserving refactoring patch。
+  \item 构建 50 个具备可执行测试的 CodeSearchNet-Python 项目评测集，覆盖 15,994 个 code smell instances；论文实验取得 \textbf{96.8\% remediation rate} 与 \textbf{91.3\% regression-test correctness}，从 smell elimination 与 behavior preservation 两个维度评估工具有效性。
+  \item 在论文原型基础上进一步实现 reviewable / verifiable refactoring workflow：加入 VS Code native diff review、line-level change-risk analysis 与 pre-apply syntax validation，并支持 post-apply Sonar validation、refactor history 和 guarded undo；仅在生成区域未被后续编辑时执行回退，避免覆盖开发者新增修改。
 \end{itemize}
 
 \section{\makebox[\widthof{\faWrench}][c]{\color{CVBlue}\faWrench}\ 技术能力}
