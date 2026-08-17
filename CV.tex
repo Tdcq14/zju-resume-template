@@ -53,7 +53,7 @@
 {\faPhone\ 19730058324 \quad
  \faEnvelopeO\ \href{mailto:zhang.yujie@zju.edu.cn}{zhang.yujie@zju.edu.cn} \quad
  \faGithubSquare\ \href{https://github.com/Tdcq14}{github.com/Tdcq14}}\\[0.10em]
-{\textbf{Research Interest：}LLM Post-training（Agentic RL / OPD） · Agent Systems（Harness / Self-Evolution）}\\[-0.10em]
+{\textbf{Research Interest：}LLM Post-training（Agentic RL / OPD） · Agent Systems（Harness / Evaluation）}\\[-0.10em]
 {\color{CVBlue}\rule{0.82\textwidth}{0.55pt}}
 
 \section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faGraduationCap}\ 教育背景}
@@ -79,9 +79,9 @@
 \textbf{面向长程 SWE Agent 的 Agentic RL 研究} \hfill 2026.04 -- 至今 \titlebreak
 \textit{SWE Agent / RL Post-training}
 \begin{itemize}
-  \item \textbf{Trajectory Filtering：}针对长程 Agent rollout 质量参差问题，借鉴 LLM-as-Verifier 的 test-time scaling（TTS）候选筛选思路，将 verifier 引入 training-time 数据构造，对轨迹进行质量评估、筛选与二次处理，保留高质量样本构造离线 preference data。
-  \item \textbf{Step-level Preference：}针对整轨迹难以进行细粒度偏好学习的问题，利用 State--Action Tree（SAT）定位轨迹分叉点并构造共享前缀；结合 OPSD re-decision，将当前 policy 作为 self-teacher，在同一前缀下注入特权信息生成 chosen action，与原分支动作构造 step-level preference pair 进行 DPO 优化。
-  \item \textbf{GRPO Credit：}基于 SkyRL + Mini-SWE-Agent 搭建 $K=8$ on-policy rollout、Docker sandbox 与 SWE harness，在 Mixed408 上使用 4$\times$A800 完成 3,264 条 rollout / 51 个优化步；针对 outcome-only GRPO 将 trajectory-level advantage 广播至整条轨迹带来的粗粒度 credit，探索 verifier / task-driven auxiliary signal 与 temporal credit routing，并在 held-out SWE-bench Verified500 上统一评测。
+  \item \textbf{Trajectory Filtering：}针对长程 Agent rollout 质量参差问题，借鉴 LLM-as-Verifier 在 test-time scaling（TTS）中的候选筛选思路，将 verifier 用于 training-time 数据构造，对轨迹进行质量评估与二次筛选，保留高质量样本构造离线 preference data。
+  \item \textbf{Step-level Preference：}针对整轨迹难以进行细粒度偏好学习的问题，利用 State--Action Tree（SAT）定位轨迹分叉点并构造共享前缀；结合 OPSD re-decision，在同一前缀下由当前 policy 使用特权信息重新决策生成 chosen action，与原分支动作构造 step-level preference pair 进行 DPO 优化。
+  \item \textbf{GRPO Credit：}基于 SkyRL + Mini-SWE-Agent 搭建 $K=8$ on-policy rollout、Docker sandbox 与 SWE harness，在 Mixed408 上使用 4$\times$A800 完成 3,264 条 rollout / 51 个优化步；针对 outcome-only GRPO 将 trajectory-level advantage 广播至整条轨迹带来的粗粒度 credit，探索使用 verifier 或任务反馈构造辅助 credit signal，并按 turn/token 进行时序路由；在 held-out SWE-bench Verified500 上统一评测。
 \end{itemize}
 
 \section{\makebox[\widthof{\faBriefcase}][c]{\color{CVBlue}\faBriefcase}\ 实习与科研实践}
@@ -89,14 +89,14 @@
 \textit{项目组成员}
 \begin{itemize}
   \item 面向真实 New Feature 开发任务，推进 PR 级数据建模与合成：结合 feature intent、变更关联性与可执行性筛选候选样本，抽取 requirement、base commit、implementation patch、test patch 与执行结果，建立 requirement--test--implementation 对齐的可训练、可评测结构化实例。
-  \item 探索 requirement-driven TestAgent--CodeAgent 协同进化闭环：由 TestAgent 生成行为 probes，经 RED gate 筛选后向 CodeAgent 提供可执行失败证据，CodeAgent 生成/修复实现并通过 GREEN 与 regression gate 选择候选；沉淀 test/code/trajectory 与执行反馈，为后续 SFT / RL Post-training 提供 evaluator 与训练信号。
+  \item 探索 requirement-driven TestAgent--CodeAgent 协同闭环：TestAgent 生成行为 probes，经 base 上的 RED 验证筛选后向 CodeAgent 提供可执行失败证据；CodeAgent 据此生成/修复实现，经 GREEN 验证与公开回归测试后选择候选；结构化记录 test/code/trajectory 及执行反馈，为后续 SFT / RL Post-training 提供 evaluator 与训练信号。
 \end{itemize}
 \projectsep
 
 \textbf{华为 2012 实验室} \hfill 2025.12 -- 2026.04 \titlebreak
 \textit{科研实习生}
 \begin{itemize}
-  \item 构建面向 C/C++ 与 Java 的 LLM 辅助 CWE 多分类评测链路；针对近邻类别设计类别级知识卡、CoT/few-shot 与结构化输出约束，并结合 per-class Precision/Recall/F1、confusion cases 与 hallucination 分析迭代类别判别策略。
+  \item 构建面向 C/C++ 与 Java 的 LLM 辅助 CWE 多分类评测链路；针对近邻类别设计类别级知识卡、CoT/few-shot 与结构化输出约束，并结合 per-class Precision/Recall/F1、confusion cases、非法输出与类别混淆分析迭代类别判别策略。
 \end{itemize}
 \projectsep
 
@@ -114,7 +114,7 @@
 \section{\makebox[\widthof{\faWrench}][c]{\color{CVBlue}\faWrench}\ 技术能力}
 \begin{itemize}
   \item \skillitem{Post-training / RL}{熟悉 PPO、GRPO、DPO、OPD 等后训练方法及 reward / credit design；持续跟进前沿模型后训练技术报告与 Agentic RL / On-Policy Distillation 相关论文；具备多 GPU 训练、跨节点 rollout、训练实验与可复现评测经验。}
-  \item \skillitem{Agent Systems / Evaluation}{理解长程 Agent 的 rollout--environment--reward--credit--evaluation 闭环；具备 Docker sandbox、Agent harness 与可复现 benchmark 构建经验；关注并使用 Claude Code、Codex、pi-agent 等 Coding Agent 工具，了解相关公开系统设计。}
+  \item \skillitem{Agent Systems / Evaluation}{理解长程 Agent 的环境交互、rollout 与 evaluation，以及 reward 与 credit assignment 机制；具备 Docker sandbox、Agent harness 与可复现 benchmark 构建经验；关注并使用 Claude Code、Codex、pi-agent 等 Coding Agent 工具，了解相关公开系统设计。}
 \end{itemize}
 
 \section{\makebox[\widthof{\faTrophy}][c]{\color{CVBlue}\faTrophy}\ 获奖情况}
