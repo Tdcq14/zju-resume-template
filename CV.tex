@@ -37,7 +37,6 @@
 \titleformat{\section}{\large\bfseries\raggedright}{}{0em}{}[{\color{CVBlue}\titlerule}]
 \titlespacing*{\section}{0cm}{0.32em}{0.14em}
 \newcommand{\entry}[4]{\textbf{#2}\hfill #1\\[-0.10em]#3\hfill #4}
-\newcommand{\skillitem}[2]{\textbf{#1：}#2}
 
 \begin{document}
 \pagenumbering{gobble}
@@ -66,24 +65,6 @@
   \item 学院公示排名：课程成绩 52/183（前30\%）；数学与专业能力 37/183（前20\%）。
 \end{itemize}
 
-\section{\makebox[\widthof{\faCode}][c]{\color{CVBlue}\faCode}\ 项目经历}
-\textbf{基于多智能体协作的软件项目自动化构建与修复系统} \hfill 2025.05 -- 2025.12 \titlebreak
-\textit{多智能体系统 / Agent 工程}
-\begin{itemize}
-  \item 面向 C/C++/Rust 项目，设计文档解析、依赖检索、环境配置、命令执行与构建验证协同的多智能体架构；解析 README/Wiki 与构建配置生成执行计划，并基于 compiler/test feedback 迭代修复构建失败。
-  \item 针对多轮构建产生的长日志与重复信息，保留当前阶段、关键命令、最新错误及已验证依赖/环境信息，限制低价值历史持续进入 Context，减少重复试错与上下文噪声。
-  \item 构建可复现的容器化评测流程，将环境与成功构建过程固化为 Dockerfile、build.sh 和 summary.md，记录命令轨迹、LLM 调用、耗时及构建结果；设置 Agent-assisted 与 direct-build baseline，支持异构仓库批量评测与失败归因。
-\end{itemize}
-\projectsep
-
-\textbf{面向长程 SWE Agent 的 Agentic RL 研究} \hfill 2026.04 -- 至今 \titlebreak
-\textit{SWE Agent / RL Post-training}
-\begin{itemize}
-  \item \textbf{Trajectory Filtering：}针对长程 Agent rollout 质量参差问题，借鉴 LLM-as-Verifier 在 test-time scaling（TTS）中的候选筛选思路，将 verifier 用于 training-time 数据构造，对轨迹进行质量评估与二次筛选，保留高质量样本构造离线 preference data。
-  \item \textbf{Step-level Preference：}针对整轨迹难以进行细粒度偏好学习的问题，利用 State--Action Tree（SAT）定位轨迹分叉点并构造共享 prefix；结合 OPSD re-decision，在同一 prefix 下由当前 policy 利用 privileged information 重新决策生成 chosen action，与原分支 action 构造 step-level preference pair 进行 DPO 优化。
-  \item \textbf{GRPO Credit：}基于 SkyRL + Mini-SWE-Agent 搭建 $K=8$ on-policy rollout、Docker sandbox 与 SWE harness，在 Mixed408 上使用 4$\times$A800 完成 3,264 条 rollout / 51 个优化步；针对 outcome-only GRPO 将 trajectory-level advantage 广播至整条轨迹带来的粗粒度 credit，探索基于 verifier 与 task-driven feedback 构造 auxiliary credit signal，并结合 temporal credit routing 分配至关键 turn/token；在 held-out SWE-bench Verified500 上统一评测。
-\end{itemize}
-
 \section{\makebox[\widthof{\faBriefcase}][c]{\color{CVBlue}\faBriefcase}\ 实习与科研实践}
 \textbf{腾讯（代码智能方向研究）} \hfill 2026.04 -- 2026.08 \titlebreak
 \textit{项目组成员}
@@ -106,19 +87,29 @@
   \item 参与数仓分层治理与 ETL 任务开发；负责 DB-GPT Text-to-SQL 落地评估，构建 300+ 条复杂查询 benchmark，围绕 schema linking、join path 与 hallucination，通过数据库元数据注入、表关系约束和 SQL 输出校验改进生成质量。
 \end{itemize}
 
+\section{\makebox[\widthof{\faCode}][c]{\color{CVBlue}\faCode}\ 科研与项目经历}
+\textbf{面向长程 SWE Agent 的 Agentic RL 研究} \hfill 2026.04 -- 至今 \titlebreak
+\textit{SWE Agent / RL Post-training}
+\begin{itemize}
+  \item \textbf{Trajectory Filtering：}针对长程 Agent rollout 质量参差问题，借鉴 LLM-as-Verifier 在 test-time scaling（TTS）中的候选筛选思路，将 verifier 用于 training-time 数据构造，对轨迹进行质量评估与二次筛选，保留高质量样本构造离线 preference data。
+  \item \textbf{Step-level Preference：}针对整轨迹难以进行细粒度偏好学习的问题，利用 State--Action Tree（SAT）定位轨迹分叉点并构造共享 prefix；结合 OPSD re-decision，在同一 prefix 下由当前 policy 利用 privileged information 重新决策生成 chosen action，与原分支 action 构造 step-level preference pair 进行 DPO 优化。
+  \item \textbf{GRPO Credit：}基于 SkyRL + Mini-SWE-Agent 搭建 $K=8$ on-policy rollout、Docker sandbox 与 SWE harness，在 Mixed408 上使用 4$\times$A800 完成 3,264 条 rollout / 51 个优化步；针对 outcome-only GRPO 将 trajectory-level advantage 广播至整条轨迹带来的粗粒度 credit，探索基于 verifier 与 task-driven feedback 构造 auxiliary credit signal，并结合 temporal credit routing 分配至关键 turn/token；在 held-out SWE-bench Verified500 上统一评测。
+\end{itemize}
+\projectsep
+
+\textbf{基于多智能体协作的软件项目自动化构建与修复系统} \hfill 2025.05 -- 2025.12 \titlebreak
+\textit{多智能体系统 / Agent 工程}
+\begin{itemize}
+  \item 面向 C/C++/Rust 项目，设计文档解析、依赖检索、环境配置、命令执行与构建验证协同的多智能体架构；解析 README/Wiki 与构建配置生成执行计划，并基于 compiler/test feedback 迭代修复构建失败。
+  \item 针对多轮构建产生的长日志与重复信息，保留当前阶段、关键命令、最新错误及已验证依赖/环境信息，限制低价值历史持续进入 Context，减少重复试错与上下文噪声。
+  \item 构建可复现的容器化评测流程，将环境与成功构建过程固化为 Dockerfile、build.sh 和 summary.md，记录命令轨迹、LLM 调用、耗时及构建结果；设置 Agent-assisted 与 direct-build baseline，支持异构仓库批量评测与失败归因。
+\end{itemize}
+
 \section{\makebox[\widthof{\faFlask}][c]{\color{CVBlue}\faFlask}\ 科研成果}
+\textbf{ASE 2026 Tool Demo Paper（CCF-A，录用）—— VS Code SmellCC}
 \begin{itemize}
-  \item \textbf{ASE 2026 Tool Demo Paper（CCF-A，录用）—— VS Code SmellCC：}参与实现面向 Top-10 Python code smells 的 LLM 自动重构插件；镜像 SonarLint diagnostics，抽取函数级上下文，并在 VS Code Quick Fix 中调用 LLM 生成和应用 refactoring patch。
+  \item 面向 Top-10 Python code smells，构建 SonarLint diagnostic、函数级上下文抽取与 LLM refactoring 的自动重构链路，根据诊断位置生成局部 patch 并约束修改范围。
+  \item 将重构能力集成至 VS Code Quick Fix，支持从 smell detection、上下文获取到 patch preview / apply 的 IDE 内交互流程，便于开发者审查并应用模型生成的修改。
 \end{itemize}
 
-\section{\makebox[\widthof{\faWrench}][c]{\color{CVBlue}\faWrench}\ 技术能力}
-\begin{itemize}
-  \item \skillitem{Post-training / RL}{熟悉 PPO、GRPO、DPO、OPD 等后训练方法及 reward / credit design；持续跟进前沿模型后训练技术报告与 Agentic RL / On-Policy Distillation 相关论文；具备多 GPU 训练、跨节点 rollout、训练实验与可复现评测经验。}
-  \item \skillitem{Agent Systems / Evaluation}{理解长程 Agent 的 environment interaction、rollout 与 evaluation，以及 reward 与 credit assignment 机制；具备 Docker sandbox、Agent harness 与可复现 benchmark 构建经验；关注并使用 Claude Code、Codex、pi-agent 等 Coding Agent 工具，了解相关公开系统设计。}
-\end{itemize}
-
-\section{\makebox[\widthof{\faTrophy}][c]{\color{CVBlue}\faTrophy}\ 获奖情况}
-\begin{itemize}
-  \item 三等学习优秀奖学金（2020--2021）\hfill 校级创新训练项目（2022--2023）
-\end{itemize}
 \end{document}
