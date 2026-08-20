@@ -25,18 +25,18 @@
 ]{NotoSansSC-Regular.ttf}
 \usepackage{fontawesome}
 \usepackage[a4paper,left=1.15cm,right=1.15cm,top=0.78cm,bottom=0.52cm,nohead]{geometry}
-\renewcommand{\baselinestretch}{1.07}
+\renewcommand{\baselinestretch}{1.10}
 \usepackage{titlesec}
-\setlist[itemize]{topsep=0.09em,itemsep=0.11em,parsep=0em,partopsep=0em,leftmargin=1.42em,labelsep=0.42em}
+\setlist[itemize]{topsep=0.16em,itemsep=0.18em,parsep=0em,partopsep=0em,leftmargin=1.42em,labelsep=0.42em}
 \newlength{\interProjectSpacing}
-\setlength{\interProjectSpacing}{0.25em}
+\setlength{\interProjectSpacing}{0.38em}
 \newcommand{\projectsep}{\vspace{\interProjectSpacing}}
 \newlength{\intraProjectTitleSep}
-\setlength{\intraProjectTitleSep}{0.08em}
+\setlength{\intraProjectTitleSep}{0.12em}
 \newcommand{\titlebreak}{\\[\intraProjectTitleSep]}
-\titleformat{\section}{\large\bfseries\raggedright}{}{0em}{}[\vspace{0.04em}{\color{CVBlue}\titlerule}]
-\titlespacing*{\section}{0cm}{0.50em}{0.26em}
-\newcommand{\entry}[4]{\textbf{#2}\hfill #1\\[-0.02em]#3\hfill #4}
+\titleformat{\section}{\large\bfseries\raggedright}{}{0em}{}[\vspace{0.07em}{\color{CVBlue}\titlerule}]
+\titlespacing*{\section}{0cm}{0.70em}{0.36em}
+\newcommand{\entry}[4]{\textbf{#2}\hfill #1\\[0.04em]#3\hfill #4}
 \newcommand{\skillitem}[2]{\textbf{#1：}#2}
 
 \begin{document}
@@ -53,7 +53,7 @@
 {\faPhone\ 19730058324 \quad
  \faEnvelopeO\ \href{mailto:zhang.yujie@zju.edu.cn}{zhang.yujie@zju.edu.cn} \quad
  \faGithubSquare\ \href{https://github.com/Tdcq14}{github.com/Tdcq14}}\\[0.10em]
-{\textbf{Research Interest：}LLM Post-training（Agentic RL / OPD） · Agent Systems（Harness / Self-Evolution）}\\[0.00em]
+{\textbf{Research Interest：}LLM Post-training（Agentic RL / OPD） · Agent Systems（Harness / Self-Evolution）}\\[0.05em]
 {\color{CVBlue}\rule{0.82\textwidth}{0.55pt}}
 
 \section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faGraduationCap}\ 教育背景}
@@ -80,7 +80,7 @@
 \begin{itemize}
   \item \textbf{Trajectory Filtering：}针对长程 Agent rollout 质量参差问题，借鉴 LLM-as-Verifier 在 test-time scaling（TTS）中的候选筛选思路，将 verifier 用于 training-time 数据构造，对轨迹进行质量评估与二次筛选，保留高质量样本构造离线 preference data。
   \item \textbf{Step-level Preference：}针对整轨迹难以进行细粒度偏好学习的问题，利用 State--Action Tree（SAT）定位轨迹分叉点并构造共享 prefix；结合 OPSD re-decision，在同一 prefix 下由当前 policy 利用 privileged information 重新决策生成 chosen action，与原分支 action 构造 step-level preference pair 进行 DPO 优化。
-  \item \textbf{GRPO Credit：}基于 SkyRL + Mini-SWE-Agent 搭建 on-policy rollout、Docker sandbox 与 SWE harness，在 Mixed408 上完成 outcome-only GRPO 训练实验；针对 trajectory-level advantage 广播至整条轨迹带来的粗粒度 credit，探索基于 verifier 与 task-driven feedback 构造 auxiliary credit signal，并结合 temporal credit routing 分配至关键 turn/token；在 held-out SWE-bench Verified500 上统一评测。
+  \item \textbf{GRPO Credit：}基于 SkyRL + Mini-SWE-Agent 搭建 on-policy rollout、Docker sandbox 与 SWE harness，基于 Mixed408 instance 集合开展 outcome-only GRPO 训练实验；针对 trajectory-level advantage 广播至整条轨迹带来的粗粒度 credit，探索基于 verifier 与 task-driven feedback 构造 auxiliary credit signal，并结合 temporal credit routing 分配至关键 turn/token；在 held-out SWE-bench Verified500 上统一评测。
 \end{itemize}
 \projectsep
 
