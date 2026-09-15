@@ -24,12 +24,12 @@
     BoldFont = NotoSansSC-Bold.ttf
 ]{NotoSansSC-Regular.ttf}
 \usepackage{fontawesome}
-\usepackage[a4paper,left=1.15cm,right=1.15cm,top=0.70cm,bottom=0.48cm,nohead]{geometry}
-\renewcommand{\baselinestretch}{1.035}
+\usepackage[a4paper,left=1.15cm,right=1.15cm,top=0.78cm,bottom=0.52cm,nohead]{geometry}
+\renewcommand{\baselinestretch}{1.05}
 \usepackage{titlesec}
-\setlist[itemize]{topsep=0.06em,itemsep=0.07em,parsep=0em,partopsep=0em,leftmargin=1.38em,labelsep=0.38em}
+\setlist[itemize]{topsep=0.08em,itemsep=0.08em,parsep=0em,partopsep=0em,leftmargin=1.42em,labelsep=0.42em}
 \newlength{\interProjectSpacing}
-\setlength{\interProjectSpacing}{0.17em}
+\setlength{\interProjectSpacing}{0.18em}
 \newcommand{\projectsep}{\vspace{\interProjectSpacing}}
 \newlength{\intraProjectTitleSep}
 \setlength{\intraProjectTitleSep}{0.02em}
@@ -68,7 +68,7 @@
 \end{itemize}
 
 \section{\makebox[\widthof{\faBriefcase}][c]{\color{CVBlue}\faBriefcase}\ 实习与项目经历}
-\textbf{腾讯犀牛鸟专项（代码智能方向联合研究）} \hfill 2026.04 -- 2026.08 \titlebreak
+\textbf{腾讯犀牛鸟专项（代码智能方向研究）} \hfill 2026.04 -- 2026.08 \titlebreak
 \roleline{项目组成员}
 \begin{itemize}
   \item 面向真实 New Feature 开发任务，推进 PR 级数据建模与合成：结合 feature intent、变更关联性与可执行性筛选候选样本，抽取 requirement、base commit、implementation patch、test patch 与执行结果，建立 requirement--test--implementation 对齐的可训练、可评测结构化实例。
@@ -83,7 +83,7 @@
 \end{itemize}
 \projectsep
 
-\textbf{华为合作项目｜软件项目自动化构建与修复工具} \hfill 2025.05 -- 2025.12 \titlebreak
+\textbf{华为合作项目（软件项目自动化构建与修复工具）} \hfill 2025.05 -- 2025.12 \titlebreak
 \roleline{Agent Systems / Build \& Repair / CLI 工具}
 \begin{itemize}
   \item 面向 C/C++ 与 Rust 开源项目研发自动构建与环境修复 Agent 工具链：解析 README / INSTALL / docs 与项目结构获取构建知识，结合网络检索补全外部指导，并在真实 Shell 环境中执行构建命令；根据依赖、编译与配置错误形成“构建执行--错误诊断--环境修复--重新验证”闭环。
